@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lymphoma/ext/context_ext.dart';
 
 import '../../../consts/strings.dart';
 import '../../../gen/assets.gen.dart';
+import '../../routing/routes.dart';
 
 class StartPage extends StatelessWidget {
   const StartPage({super.key});
@@ -53,7 +55,7 @@ class StartPage extends StatelessWidget {
                         child: const Text(AppStrings.register)
                     ),
                     TextButton(
-                        onPressed: () {},
+                        onPressed: () => context.go(Routes.login.path),
                         child: Text.rich(
                             TextSpan(
                                 text: "${AppStrings.alreadyHaveAccount} ",

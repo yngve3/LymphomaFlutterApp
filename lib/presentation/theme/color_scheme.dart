@@ -14,8 +14,8 @@ class AppColorScheme {
     error: AppColors.system100,
     onError: AppColors.neutral100,
     background: AppColors.neutral300,
-    onBackground: AppColors.neutral900,
+    onBackground: AppColors.neutral600,
     surface: AppColors.neutral100,
-    onSurface: AppColors.neutral900
+    onSurface: AppColors.neutral900,
   );
 }

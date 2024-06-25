@@ -8,7 +8,7 @@ FilledButtonThemeData filledButtonThemeData(TextTheme textTheme) => FilledButton
       alignment: Alignment.bottomCenter,
       textStyle: textTheme.titleLarge,
       shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppDimens.borderRadius)
+          borderRadius: BorderRadius.circular(AppDimens.buttonsBorderRadius)
       ),
     )
 );
@@ -20,7 +20,15 @@ ElevatedButtonThemeData elevatedButtonThemeData(TextTheme textTheme) => Elevated
             alignment: Alignment.bottomCenter,
             textStyle: textTheme.titleLarge,
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(AppDimens.borderRadius)
+                borderRadius: BorderRadius.circular(AppDimens.buttonsBorderRadius)
             ),
       ),
+);
+
+IconButtonThemeData iconButtonThemeData(TextTheme textTheme) => IconButtonThemeData(
+      style: IconButton.styleFrom(
+            shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(AppDimens.cardBorderRadius)
+            )
+      )
 );
