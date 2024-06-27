@@ -19,11 +19,24 @@ class $AssetsIconsGen {
   SvgGenImage get icArrowLeft =>
       const SvgGenImage('assets/icons/ic_arrow_left.svg');
 
+  /// File path: assets/icons/ic_hide.svg
+  SvgGenImage get icHide => const SvgGenImage('assets/icons/ic_hide.svg');
+
+  /// File path: assets/icons/ic_not_ok.svg
+  SvgGenImage get icNotOk => const SvgGenImage('assets/icons/ic_not_ok.svg');
+
+  /// File path: assets/icons/ic_ok.svg
+  SvgGenImage get icOk => const SvgGenImage('assets/icons/ic_ok.svg');
+
+  /// File path: assets/icons/ic_show.svg
+  SvgGenImage get icShow => const SvgGenImage('assets/icons/ic_show.svg');
+
   /// File path: assets/icons/ic_star.svg
   SvgGenImage get icStar => const SvgGenImage('assets/icons/ic_star.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [icArrowLeft, icStar];
+  List<SvgGenImage> get values =>
+      [icArrowLeft, icHide, icNotOk, icOk, icShow, icStar];
 }
 
 class $AssetsImagesGen {
@@ -48,11 +61,16 @@ class Assets {
 }
 
 class AssetGenImage {
-  const AssetGenImage(this._assetName, {this.size = null});
+  const AssetGenImage(
+    this._assetName, {
+    this.size,
+    this.flavors = const {},
+  });
 
   final String _assetName;
 
   final Size? size;
+  final Set<String> flavors;
 
   Image image({
     Key? key,
@@ -126,17 +144,19 @@ class AssetGenImage {
 class SvgGenImage {
   const SvgGenImage(
     this._assetName, {
-    this.size = null,
+    this.size,
+    this.flavors = const {},
   }) : _isVecFormat = false;
 
   const SvgGenImage.vec(
     this._assetName, {
-    this.size = null,
+    this.size,
+    this.flavors = const {},
   }) : _isVecFormat = true;
 
   final String _assetName;
-
   final Size? size;
+  final Set<String> flavors;
   final bool _isVecFormat;
 
   SvgPicture svg({
@@ -159,12 +179,23 @@ class SvgGenImage {
     @deprecated BlendMode colorBlendMode = BlendMode.srcIn,
     @deprecated bool cacheColorFilter = false,
   }) {
+    final BytesLoader loader;
+    if (_isVecFormat) {
+      loader = AssetBytesLoader(
+        _assetName,
+        assetBundle: bundle,
+        packageName: package,
+      );
+    } else {
+      loader = SvgAssetLoader(
+        _assetName,
+        assetBundle: bundle,
+        packageName: package,
+        theme: theme,
+      );
+    }
     return SvgPicture(
-      _isVecFormat
-          ? AssetBytesLoader(_assetName,
-              assetBundle: bundle, packageName: package)
-          : SvgAssetLoader(_assetName,
-              assetBundle: bundle, packageName: package),
+      loader,
       key: key,
       matchTextDirection: matchTextDirection,
       width: width,
@@ -175,7 +206,6 @@ class SvgGenImage {
       placeholderBuilder: placeholderBuilder,
       semanticsLabel: semanticsLabel,
       excludeFromSemantics: excludeFromSemantics,
-      theme: theme,
       colorFilter: colorFilter ??
           (color == null ? null : ColorFilter.mode(color, colorBlendMode)),
       clipBehavior: clipBehavior,

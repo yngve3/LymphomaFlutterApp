@@ -51,7 +51,7 @@ class StartPage extends StatelessWidget {
                 child: Column(
                   children: [
                     ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () => context.go(Routes.registration.path),
                         child: const Text(AppStrings.register)
                     ),
                     TextButton(

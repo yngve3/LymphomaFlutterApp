@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lymphoma/consts/dimens.dart';
 import 'package:lymphoma/ext/context_ext.dart';
+import 'package:lymphoma/presentation/widgets/icon_with_card.dart';
 
 import '../../gen/assets.gen.dart';
 
@@ -11,13 +12,15 @@ class AppAppBar extends StatelessWidget implements PreferredSizeWidget {
     required this.title,
     required this.appBar,
     List<Widget>? actions,
-    this.showBackArrow = true
+    this.showBackArrow = true,
+    this.onBackArrowTapped
   }) : actions = actions ?? [];
 
   final List<Widget> actions;
   final String title;
   final AppBar appBar;
   final bool showBackArrow;
+  final VoidCallback? onBackArrowTapped;
 
   @override
   Widget build(BuildContext context) {
@@ -33,13 +36,10 @@ class AppAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: Transform.translate(
         offset: const Offset(AppDimens.padding, 0),
         child: showBackArrow ? InkWell(
-          onTap: () => context.pop(),
-          child: Card(
-            child: Padding(
-              padding: const EdgeInsets.all(13.73),
-              child: Assets.icons.icArrowLeft.svg(),
-            ),
-          ),
+          onTap: onBackArrowTapped ?? () => context.pop(),
+          child: IconWithCard(
+            icon: Assets.icons.icArrowLeft.svg()
+          )
         ) : null,
       ),
       automaticallyImplyLeading: showBackArrow,

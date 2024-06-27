@@ -1,7 +1,9 @@
 abstract class Routes {
-  static SimpleRoute start = const SimpleRoute("/");
-  static SimpleRoute login = const SimpleRoute("/login");
-  static SimpleRoute registration = const SimpleRoute("/registration");
+  static SimpleRoute start = const SimpleRoute("/start");
+  static SimpleRoute login = const SimpleRoute("/start/login");
+  static SimpleRoute recovery = const SimpleRoute("/start/login/recovery");
+  static SimpleRoute registration = const SimpleRoute("/start/registration");
+  static SimpleRoute registrationStatus = const SimpleRoute("/registrationStatus");
   static SimpleRoute main = const SimpleRoute("/main");
 }
 

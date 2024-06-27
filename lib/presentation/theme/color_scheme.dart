@@ -17,5 +17,6 @@ class AppColorScheme {
     onBackground: AppColors.neutral600,
     surface: AppColors.neutral100,
     onSurface: AppColors.neutral900,
+    surfaceVariant: AppColors.system300
   );
 }

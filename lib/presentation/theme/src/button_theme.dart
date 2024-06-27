@@ -6,7 +6,7 @@ FilledButtonThemeData filledButtonThemeData(TextTheme textTheme) => FilledButton
       minimumSize: const Size.fromHeight(46),
       padding: const EdgeInsets.symmetric(vertical: 15),
       alignment: Alignment.bottomCenter,
-      textStyle: textTheme.titleLarge,
+      textStyle: textTheme.bodyLarge,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppDimens.buttonsBorderRadius)
       ),
@@ -18,7 +18,7 @@ ElevatedButtonThemeData elevatedButtonThemeData(TextTheme textTheme) => Elevated
             minimumSize: const Size.fromHeight(46),
             padding: const EdgeInsets.symmetric(vertical: 15),
             alignment: Alignment.bottomCenter,
-            textStyle: textTheme.titleLarge,
+            textStyle: textTheme.bodyLarge,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(AppDimens.buttonsBorderRadius)
             ),

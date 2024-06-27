@@ -7,18 +7,20 @@ class Screen extends StatelessWidget {
   const Screen({
     super.key,
     required this.child,
-    this.padding
+    this.padding,
+    this.systemColor
   });
 
   final Widget child;
   final EdgeInsets? padding;
+  final Color? systemColor;
 
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.light.copyWith(
-        statusBarColor: context.colors.background,
-        systemNavigationBarColor: context.colors.background,
+        statusBarColor: systemColor ?? context.colors.background,
+        systemNavigationBarColor: systemColor ?? context.colors.background,
       ),
       child: Padding(
         padding: padding ?? const EdgeInsets.only(
@@ -27,6 +29,26 @@ class Screen extends StatelessWidget {
           top: 35
         ),
         child: child,
+      ),
+    );
+  }
+}
+
+class ScrollableScreen extends StatelessWidget {
+  const ScrollableScreen({
+    super.key,
+    required this.child
+  });
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Screen(
+      child: Expanded(
+        child: SingleChildScrollView(
+          child: child,
+        ),
       ),
     );
   }

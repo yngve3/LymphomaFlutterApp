@@ -31,7 +31,7 @@ TextTheme textThemeData(ColorScheme colorScheme) => const TextTheme(
 
   bodyLarge: TextStyle(
     fontFamily: FontFamily.manrope,
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.bold,
     fontSize: 16,
   ),
   bodyMedium: TextStyle(
@@ -41,7 +41,7 @@ TextTheme textThemeData(ColorScheme colorScheme) => const TextTheme(
   ),
   bodySmall: TextStyle(
     fontFamily: FontFamily.manrope,
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.bold,
     fontSize: 12,
   ),
 );

@@ -11,4 +11,5 @@ abstract class AppColors {
   static const neutral100 = Color(0xffFFFFFF);
 
   static const system100 = Color(0xffF24822);
+  static const system300 = Color(0xff14AE5C);
 }
