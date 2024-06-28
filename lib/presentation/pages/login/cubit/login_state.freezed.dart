@@ -16,9 +16,10 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$LoginState {
-  String get email => throw _privateConstructorUsedError;
-  String get password => throw _privateConstructorUsedError;
   bool get isButtonLogInEnabled => throw _privateConstructorUsedError;
+  bool get isButtonRecoveryEnabled => throw _privateConstructorUsedError;
+  String get loginError => throw _privateConstructorUsedError;
+  Map<String, Field> get textFields => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LoginStateCopyWith<LoginState> get copyWith =>
@@ -31,7 +32,11 @@ abstract class $LoginStateCopyWith<$Res> {
           LoginState value, $Res Function(LoginState) then) =
       _$LoginStateCopyWithImpl<$Res, LoginState>;
   @useResult
-  $Res call({String email, String password, bool isButtonLogInEnabled});
+  $Res call(
+      {bool isButtonLogInEnabled,
+      bool isButtonRecoveryEnabled,
+      String loginError,
+      Map<String, Field> textFields});
 }
 
 /// @nodoc
@@ -47,23 +52,28 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? email = null,
-    Object? password = null,
     Object? isButtonLogInEnabled = null,
+    Object? isButtonRecoveryEnabled = null,
+    Object? loginError = null,
+    Object? textFields = null,
   }) {
     return _then(_value.copyWith(
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
       isButtonLogInEnabled: null == isButtonLogInEnabled
           ? _value.isButtonLogInEnabled
           : isButtonLogInEnabled // ignore: cast_nullable_to_non_nullable
               as bool,
+      isButtonRecoveryEnabled: null == isButtonRecoveryEnabled
+          ? _value.isButtonRecoveryEnabled
+          : isButtonRecoveryEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
+      loginError: null == loginError
+          ? _value.loginError
+          : loginError // ignore: cast_nullable_to_non_nullable
+              as String,
+      textFields: null == textFields
+          ? _value.textFields
+          : textFields // ignore: cast_nullable_to_non_nullable
+              as Map<String, Field>,
     ) as $Val);
   }
 }
@@ -76,7 +86,11 @@ abstract class _$$LoginStateImplCopyWith<$Res>
       __$$LoginStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String email, String password, bool isButtonLogInEnabled});
+  $Res call(
+      {bool isButtonLogInEnabled,
+      bool isButtonRecoveryEnabled,
+      String loginError,
+      Map<String, Field> textFields});
 }
 
 /// @nodoc
@@ -90,23 +104,28 @@ class __$$LoginStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? email = null,
-    Object? password = null,
     Object? isButtonLogInEnabled = null,
+    Object? isButtonRecoveryEnabled = null,
+    Object? loginError = null,
+    Object? textFields = null,
   }) {
     return _then(_$LoginStateImpl(
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
       isButtonLogInEnabled: null == isButtonLogInEnabled
           ? _value.isButtonLogInEnabled
           : isButtonLogInEnabled // ignore: cast_nullable_to_non_nullable
               as bool,
+      isButtonRecoveryEnabled: null == isButtonRecoveryEnabled
+          ? _value.isButtonRecoveryEnabled
+          : isButtonRecoveryEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
+      loginError: null == loginError
+          ? _value.loginError
+          : loginError // ignore: cast_nullable_to_non_nullable
+              as String,
+      textFields: null == textFields
+          ? _value._textFields
+          : textFields // ignore: cast_nullable_to_non_nullable
+              as Map<String, Field>,
     ));
   }
 }
@@ -115,21 +134,33 @@ class __$$LoginStateImplCopyWithImpl<$Res>
 
 class _$LoginStateImpl implements _LoginState {
   const _$LoginStateImpl(
-      {this.email = "", this.password = "", this.isButtonLogInEnabled = false});
+      {this.isButtonLogInEnabled = false,
+      this.isButtonRecoveryEnabled = false,
+      this.loginError = LogicStrings.init,
+      final Map<String, Field> textFields = const {}})
+      : _textFields = textFields;
 
-  @override
-  @JsonKey()
-  final String email;
-  @override
-  @JsonKey()
-  final String password;
   @override
   @JsonKey()
   final bool isButtonLogInEnabled;
+  @override
+  @JsonKey()
+  final bool isButtonRecoveryEnabled;
+  @override
+  @JsonKey()
+  final String loginError;
+  final Map<String, Field> _textFields;
+  @override
+  @JsonKey()
+  Map<String, Field> get textFields {
+    if (_textFields is EqualUnmodifiableMapView) return _textFields;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_textFields);
+  }
 
   @override
   String toString() {
-    return 'LoginState(email: $email, password: $password, isButtonLogInEnabled: $isButtonLogInEnabled)';
+    return 'LoginState(isButtonLogInEnabled: $isButtonLogInEnabled, isButtonRecoveryEnabled: $isButtonRecoveryEnabled, loginError: $loginError, textFields: $textFields)';
   }
 
   @override
@@ -137,16 +168,24 @@ class _$LoginStateImpl implements _LoginState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoginStateImpl &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.password, password) ||
-                other.password == password) &&
             (identical(other.isButtonLogInEnabled, isButtonLogInEnabled) ||
-                other.isButtonLogInEnabled == isButtonLogInEnabled));
+                other.isButtonLogInEnabled == isButtonLogInEnabled) &&
+            (identical(
+                    other.isButtonRecoveryEnabled, isButtonRecoveryEnabled) ||
+                other.isButtonRecoveryEnabled == isButtonRecoveryEnabled) &&
+            (identical(other.loginError, loginError) ||
+                other.loginError == loginError) &&
+            const DeepCollectionEquality()
+                .equals(other._textFields, _textFields));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, email, password, isButtonLogInEnabled);
+  int get hashCode => Object.hash(
+      runtimeType,
+      isButtonLogInEnabled,
+      isButtonRecoveryEnabled,
+      loginError,
+      const DeepCollectionEquality().hash(_textFields));
 
   @JsonKey(ignore: true)
   @override
@@ -157,16 +196,19 @@ class _$LoginStateImpl implements _LoginState {
 
 abstract class _LoginState implements LoginState {
   const factory _LoginState(
-      {final String email,
-      final String password,
-      final bool isButtonLogInEnabled}) = _$LoginStateImpl;
+      {final bool isButtonLogInEnabled,
+      final bool isButtonRecoveryEnabled,
+      final String loginError,
+      final Map<String, Field> textFields}) = _$LoginStateImpl;
 
   @override
-  String get email;
-  @override
-  String get password;
-  @override
   bool get isButtonLogInEnabled;
+  @override
+  bool get isButtonRecoveryEnabled;
+  @override
+  String get loginError;
+  @override
+  Map<String, Field> get textFields;
   @override
   @JsonKey(ignore: true)
   _$$LoginStateImplCopyWith<_$LoginStateImpl> get copyWith =>

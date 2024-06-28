@@ -37,12 +37,13 @@ class RecoveryPage extends StatelessWidget {
                     hint: AppStrings.enterEmail,
                     label: AppStrings.email,
                     requestFocus: true,
-                    onChanged: (value) => cubit.onEmailChanged(value),
                     textInputType: TextInputType.emailAddress,
+                    onChanged: (value) => cubit.onFieldChanged(FieldNames.email, value),
+                    field: state.textFields[FieldNames.email],
                   ),
                   const SizedBox(height: 40),
                   FilledButton(
-                      onPressed: state.email.isNotEmpty ? () {
+                      onPressed: state.isButtonRecoveryEnabled ? () {
                         showDialog(
                             context: context,
                             builder: (context) => Dialog.fullscreen(
@@ -59,13 +60,34 @@ class RecoveryPage extends StatelessWidget {
                                           Text(AppStrings.checkYourEmail, style: context.textTheme.headlineMedium),
                                           const SizedBox(height: 12),
                                           Text(
-                                            "${AppStrings.ifAccountExistBegin} \"${state.email}\"\n ${AppStrings.ifAccountExistEnd}",
+                                            "${AppStrings.ifAccountExistBegin} \"${state.textFields[FieldNames.email]?.text}\"\n ${AppStrings.ifAccountExistEnd}",
                                             textAlign: TextAlign.center,
                                           ),
                                           const SizedBox(height: 44),
                                           FilledButton(
                                             onPressed: () => context.go(Routes.start.path),
                                             child: const Text(AppStrings.toStartPage),
+                                          ),
+                                          const SizedBox(height: 24),
+                                          TextButton(
+                                            onPressed: () => context.pop(),
+                                            child: Text.rich(
+                                              textAlign: TextAlign.center,
+                                              TextSpan(
+                                                text: AppStrings.didntGeEmail,
+                                                style: context.textTheme.bodyMedium?.copyWith(color: context.colors.onBackground),
+                                                children: [
+                                                  TextSpan(
+                                                    text: " ${AppStrings.rewriteEmail}",
+                                                    style: context.textTheme.bodyMedium?.copyWith(
+                                                      color: context.colors.primary,
+                                                      decoration: TextDecoration.underline,
+                                                      decorationColor: context.colors.primary
+                                                    ),
+                                                  )
+                                                ]
+                                              )
+                                            ),
                                           )
                                         ],
                                       ),

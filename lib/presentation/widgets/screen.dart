@@ -45,10 +45,14 @@ class ScrollableScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Screen(
-      child: Expanded(
-        child: SingleChildScrollView(
-          child: child,
-        ),
+      child: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              child: child,
+            ),
+          )
+        ],
       ),
     );
   }

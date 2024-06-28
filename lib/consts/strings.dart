@@ -40,5 +40,29 @@ abstract class AppStrings {
   static const sendRequest = "Отправить запрос";
   static const requestStatusTitle = "Запрос успешно\nотправлен врачу";
   static const requestStatusSubtitle = "Ответ придет в течение дня.\nО подтверждении аккауанта\nмы оповестим вас через почту.";
+  static const didntGeEmail = "Не получили письмо? Проверьте раздел спам или попробуйте";
+  static const rewriteEmail = "ввести другую почту";
+  static const emailIncorrect = "Неверный формат";
+  static const passwordIncorrect = "Неверный формат";
+  static const fullNameIncorrect = "Неверный формат";
+  static const phoneIncorrect = "Неверный формат";
+  static const passwordsNotEqual = "Пароли не совпадают";
+  static const emailNotConfirmed = "Почта не подтверждена";
+  static const invalidLoginOrPassword = "Неправильные логин или пароль";
+  static const unknownError = "Неизвестная ошибка";
+  static const emailAlreadyExist = "Пользователь уже существует";
+}
 
+abstract class LogicStrings {
+  static const init = "init";
+  static const ok = "ok";
+}
+
+abstract class FieldNames {
+  static const email = "email";
+  static const password = "password";
+  static const repeatedPassword = "repeatedPassword";
+  static const fullName = "fullName";
+  static const phoneNumber = "phoneNumber";
+  static const familyPhoneNumber = "familyPhoneNumber";
 }

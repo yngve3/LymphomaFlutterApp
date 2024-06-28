@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:lymphoma/presentation/pages/login/login_page.dart';
 import 'package:lymphoma/presentation/pages/login/recovery_page.dart';
+import 'package:lymphoma/presentation/pages/main/main_page.dart';
 import 'package:lymphoma/presentation/pages/registrations/registration_page.dart';
 import 'package:lymphoma/presentation/pages/registrations/registration_status_page.dart';
 import 'package:lymphoma/presentation/pages/start/start_page.dart';
@@ -34,6 +35,10 @@ abstract class AppRouter {
       GoRoute(
         path: Routes.registrationStatus.path,
         builder: (context, state) => const RegistrationStatusPage(),
+      ),
+      GoRoute(
+        path: Routes.main.path,
+        builder: (context, state) => const MainPage()
       )
     ]
   );

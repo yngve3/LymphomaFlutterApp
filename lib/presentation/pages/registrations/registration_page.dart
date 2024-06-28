@@ -41,44 +41,53 @@ class _RegistrationPageState extends State<RegistrationPage> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => RegistrationCubit(),
-      child: Scaffold(
-        appBar: AppAppBar(
-            appBar: AppBar(),
-            title: AppStrings.registration,
-            onBackArrowTapped: currentPage == 0 ? null : _previousPage
-        ),
-        body: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [
-            PageView(
-              physics: const NeverScrollableScrollPhysics(),
-              controller: _pageViewController,
-              children: [
-                RegistrationFirstPage(
-                  onContinueTapped: _nextPage,
-                ),
-                RegistrationSecondPage(
-                  onSendRequestButtonTapped: () {
-                    // context.read<RegistrationCubit>().sendRequest();
-                    context.go(Routes.registrationStatus.path);
-                  }
-                )
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: SmoothPageIndicator(
+      child: BlocListener<RegistrationCubit, RegistrationState>(
+        listenWhen: (previousState, state) {
+          return state.isSendRequestButtonEnabled;
+        },
+        listener: (context, state) {
+          if (state.registerError != LogicStrings.init && state.registerError != LogicStrings.ok) {
+            ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(state.registerError, textAlign: TextAlign.center))
+            );
+          } else if (state.registerError == LogicStrings.ok) {
+            context.go(Routes.registrationStatus.path);
+          }
+        },
+        child: Scaffold(
+          appBar: AppAppBar(
+              appBar: AppBar(),
+              title: AppStrings.registration,
+              onBackArrowTapped: currentPage == 0 ? null : _previousPage
+          ),
+          body: Stack(
+            alignment: Alignment.bottomCenter,
+            children: [
+              PageView(
+                physics: const NeverScrollableScrollPhysics(),
                 controller: _pageViewController,
-                count: 2,
-                effect: WormEffect(
-                    dotColor: context.colors.primary.withOpacity(0.3),
-                    activeDotColor: context.colors.primary,
-                    dotHeight: 8,
-                    dotWidth: 8
-                ),
+                children: [
+                  RegistrationFirstPage(
+                    onContinueTapped: _nextPage,
+                  ),
+                  const RegistrationSecondPage()
+                ],
               ),
-            )
-          ],
+              Padding(
+                padding: const EdgeInsets.only(bottom: 10),
+                child: SmoothPageIndicator(
+                  controller: _pageViewController,
+                  count: 2,
+                  effect: WormEffect(
+                      dotColor: context.colors.primary.withOpacity(0.3),
+                      activeDotColor: context.colors.primary,
+                      dotHeight: 8,
+                      dotWidth: 8
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       )
     );
@@ -127,8 +136,8 @@ class RegistrationFirstPage extends StatelessWidget {
                 hint: AppStrings.enterEmail,
                 textInputAction: TextInputAction.next,
                 textInputType: TextInputType.emailAddress,
-                onChanged: cubit.onEmailChanged,
-                text: state.email,
+                onChanged: (value) => cubit.onFieldChanged(FieldNames.email, value),
+                field: state.textFields[FieldNames.email],
               ),
               const SizedBox(height: 16),
               InputField(
@@ -136,16 +145,16 @@ class RegistrationFirstPage extends StatelessWidget {
                 hint: AppStrings.enterPassword,
                 textInputAction: TextInputAction.next,
                 isPassword: true,
-                onChanged: cubit.onPasswordChanged,
-                text: state.password,
+                onChanged: (value) => cubit.onFieldChanged(FieldNames.password, value),
+                field: state.textFields[FieldNames.password],
               ),
               const SizedBox(height: 16),
               InputField(
                 label: AppStrings.repeatPassword,
                 hint: AppStrings.repeatPassword,
                 isPassword: true,
-                onChanged: cubit.onRepeatedPasswordChanged,
-                text: state.repeatedPassword
+                onChanged: (value) => cubit.onFieldChanged(FieldNames.repeatedPassword, value),
+                field: state.textFields[FieldNames.repeatedPassword],
               ),
               const SizedBox(height: 40),
               FilledButton(
@@ -181,8 +190,8 @@ class RegistrationSecondPage extends StatelessWidget {
                 label: AppStrings.fullName,
                 hint: AppStrings.enterFullName,
                 textInputAction: TextInputAction.next,
-                text: state.fullName,
-                onChanged: cubit.onFullNameChanged,
+                onChanged: (value) => cubit.onFieldChanged(FieldNames.fullName, value),
+                field: state.textFields[FieldNames.fullName],
               ),
               const SizedBox(height: 16),
               EnterDateField(
@@ -195,8 +204,8 @@ class RegistrationSecondPage extends StatelessWidget {
                 hint: AppStrings.enterPhoneNumber,
                 textInputAction: TextInputAction.next,
                 textInputType: TextInputType.phone,
-                text: state.phoneNumber,
-                onChanged: cubit.onPhoneNumberChanged,
+                onChanged: (value) => cubit.onFieldChanged(FieldNames.phoneNumber, value),
+                field: state.textFields[FieldNames.phoneNumber],
               ),
               const SizedBox(height: 16),
               InputField(
@@ -204,12 +213,14 @@ class RegistrationSecondPage extends StatelessWidget {
                 hint: AppStrings.enterFamilyPhoneNumber,
                 textInputAction: TextInputAction.next,
                 textInputType: TextInputType.phone,
-                text: state.familyPhoneNumber,
-                onChanged: cubit.onFamilyPhoneNumberChanged,
+                onChanged: (value) => cubit.onFieldChanged(FieldNames.familyPhoneNumber, value),
+                field: state.textFields[FieldNames.familyPhoneNumber],
               ),
               const SizedBox(height: 40),
               FilledButton(
-                onPressed: state.isSendRequestButtonEnabled ? onSendRequestButtonTapped : null,
+                onPressed: state.isSendRequestButtonEnabled ? () {
+                  context.read<RegistrationCubit>().sendRequest();
+                } : null,
                 child: const Text(AppStrings.sendRequest),
               )
             ],

@@ -18,7 +18,19 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => LoginCubit(),
-      child: BlocBuilder<LoginCubit, LoginState>(
+      child: BlocConsumer<LoginCubit, LoginState>(
+        listenWhen: (previousState, state) {
+          return state.isButtonLogInEnabled;
+        },
+        listener: (context, state) {
+          if (state.loginError != LogicStrings.init && state.loginError != LogicStrings.ok) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(state.loginError, textAlign: TextAlign.center))
+            );
+          } else if (state.loginError == LogicStrings.ok) {
+            context.go(Routes.main.path);
+          }
+        },
         builder: (context, state) {
           final cubit = BlocProvider.of<LoginCubit>(context);
           return Scaffold(
@@ -27,7 +39,7 @@ class LoginPage extends StatelessWidget {
                 title: AppStrings.logon,
                 appBar: AppBar(),
               ),
-              body: Screen(
+              body: ScrollableScreen(
                   child: Column(
                     children: [
                       InputField(
@@ -35,14 +47,16 @@ class LoginPage extends StatelessWidget {
                         label: AppStrings.email,
                         textInputAction: TextInputAction.next,
                         textInputType: TextInputType.emailAddress,
-                        onChanged: (value) => cubit.onEmailChanged(value),
+                        onChanged: (value) => cubit.onFieldChanged(FieldNames.email, value),
+                        field: state.textFields[FieldNames.email],
                       ),
                       const SizedBox(height: 16),
                       InputField(
                         hint: AppStrings.enterPassword,
                         label: AppStrings.password,
                         isPassword: true,
-                        onChanged: (value) => cubit.onPasswordChanged(value),
+                        onChanged: (value) => cubit.onFieldChanged(FieldNames.password, value),
+                        field: state.textFields[FieldNames.password],
                       ),
                       const SizedBox(height: 40),
                       FilledButton(
