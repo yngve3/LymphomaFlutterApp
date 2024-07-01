@@ -1,11 +1,12 @@
-import 'package:easy_debounce/easy_debounce.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../consts/strings.dart';
 import '../models/field/field.dart';
 import '../validators/validator.dart';
 
+@injectable
 class FieldChanger {
-  static Map<String, Field> onFieldChanged(Map<String, Field> fields, String fieldName, String value) {
+  Map<String, Field> onFieldChanged(Map<String, Field> fields, String fieldName, String value) {
     final res = fieldName == FieldNames.repeatedPassword
         ? value == fields[FieldNames.password]?.text
         : ValidatorApplier(ValidatorFactory()).validate(fieldName, value);
@@ -15,7 +16,7 @@ class FieldChanger {
     return fields;
   }
 
-  static void _updateOrInsert(Map<String, Field> fields, String value, String fieldName, String? error) {
+  void _updateOrInsert(Map<String, Field> fields, String value, String fieldName, String? error) {
     if (!fields.containsKey(fieldName)) {
       fields.addAll({fieldName: Field(text: value, error: error)});
     } else {
@@ -23,7 +24,7 @@ class FieldChanger {
     }
   }
 
-  static String? _getErrorText(String fieldName, bool validationResult) {
+  String? _getErrorText(String fieldName, bool validationResult) {
     if (validationResult == true) return null;
     return switch(fieldName) {
       FieldNames.email => AppStrings.emailIncorrect,

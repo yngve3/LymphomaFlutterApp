@@ -7,6 +7,7 @@ import 'package:lymphoma/presentation/widgets/app_app_bar.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../consts/strings.dart';
+import '../../../di/dependencies.dart';
 import '../../routing/routes.dart';
 import '../../widgets/enter_date_field.dart';
 import '../../widgets/input_field.dart';
@@ -40,7 +41,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => RegistrationCubit(),
+      create: (context) => getIt.get<RegistrationCubit>(),
       child: BlocListener<RegistrationCubit, RegistrationState>(
         listenWhen: (previousState, state) {
           return state.isSendRequestButtonEnabled;

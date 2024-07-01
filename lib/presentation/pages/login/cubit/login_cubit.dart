@@ -1,18 +1,22 @@
 import 'package:easy_debounce/easy_debounce.dart';
-import 'package:lymphoma/data/repositories/auth_repository.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:lymphoma/domain/interactors/auth_interactor.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../consts/strings.dart';
 import '../../../../domain/models/field/field.dart';
 import '../../../../domain/utils/field_changer.dart';
 import 'login_state.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
+@injectable
 class LoginCubit extends Cubit<LoginState> {
-  LoginCubit() : super(const LoginState());
+  LoginCubit(
+      this._authInteractor,
+      this._fieldChanger
+  ) : super(const LoginState());
 
-  final _authInteractor = AuthInteractor();
+  late final AuthInteractor _authInteractor;
+  late final FieldChanger _fieldChanger;
 
   void login() async {
     final res = await _authInteractor.login(fields: state.textFields);
@@ -28,7 +32,7 @@ class LoginCubit extends Cubit<LoginState> {
 
   void onFieldChanged(String fieldName, String value) {
     EasyDebounce.debounce("loginFieldChanged", const Duration(milliseconds: 400), () {
-      final fields = FieldChanger.onFieldChanged(Map.of(state.textFields), fieldName, value);
+      final fields = _fieldChanger.onFieldChanged(Map.of(state.textFields), fieldName, value);
       emit(state.copyWith(
         textFields: fields,
         isButtonLogInEnabled: _checkLoginButtonEnabled(fields),

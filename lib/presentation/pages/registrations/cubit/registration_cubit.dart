@@ -1,18 +1,23 @@
 import 'package:easy_debounce/easy_debounce.dart';
+import 'package:easy_debounce/easy_throttle.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:lymphoma/domain/interactors/auth_interactor.dart';
 import 'package:lymphoma/domain/utils/field_changer.dart';
-import 'package:lymphoma/domain/validators/validator.dart';
 import 'package:lymphoma/presentation/pages/registrations/cubit/registration_state.dart';
-import 'package:easy_debounce/easy_throttle.dart';
 
 import '../../../../consts/strings.dart';
 import '../../../../domain/models/field/field.dart';
 
+@injectable
 class RegistrationCubit extends Cubit<RegistrationState> {
-  RegistrationCubit() : super(const RegistrationState());
+  RegistrationCubit(
+      this._authInteractor,
+      this._fieldChanger
+  ) : super(const RegistrationState());
 
-  final _authInteractor = AuthInteractor();
+  late final AuthInteractor _authInteractor;
+  late final FieldChanger _fieldChanger;
 
   void sendRequest() async {
     EasyThrottle.throttle('sentRequest', const Duration(seconds: 1), () async {
@@ -32,7 +37,7 @@ class RegistrationCubit extends Cubit<RegistrationState> {
 
   void onFieldChanged(String fieldName, String value) {
     EasyDebounce.debounce("fieldChanged", const Duration(milliseconds: 400), () {
-      final fields = FieldChanger.onFieldChanged(Map.of(state.textFields), fieldName, value);
+      final fields = _fieldChanger.onFieldChanged(Map.of(state.textFields), fieldName, value);
       emit(state.copyWith(
         textFields: fields,
         isContinueButtonEnabled: _checkContinueButtonEnabled(fields),

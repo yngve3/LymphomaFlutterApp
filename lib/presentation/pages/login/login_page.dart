@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lymphoma/di/dependencies.dart';
 import 'package:lymphoma/ext/context_ext.dart';
 import 'package:lymphoma/presentation/pages/login/cubit/login_cubit.dart';
 
@@ -17,7 +18,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => LoginCubit(),
+      create: (context) => getIt.get<LoginCubit>(),
       child: BlocConsumer<LoginCubit, LoginState>(
         listenWhen: (previousState, state) {
           return state.isButtonLogInEnabled;

@@ -8,6 +8,7 @@ import 'package:lymphoma/presentation/widgets/app_app_bar.dart';
 import 'package:lymphoma/presentation/widgets/icon_with_card.dart';
 
 import '../../../consts/strings.dart';
+import '../../../di/dependencies.dart';
 import '../../routing/routes.dart';
 import '../../widgets/input_field.dart';
 import '../../widgets/screen.dart';
@@ -19,7 +20,7 @@ class RecoveryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => LoginCubit(),
+      create: (context) => getIt.get<LoginCubit>(),
       child: BlocBuilder<LoginCubit, LoginState>(
         builder: (context, state) {
           final cubit = BlocProvider.of<LoginCubit>(context);

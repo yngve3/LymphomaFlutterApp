@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:lymphoma/data/repositories/user_repository.dart';
 import 'package:lymphoma/presentation/pages/login/login_page.dart';
 import 'package:lymphoma/presentation/pages/login/recovery_page.dart';
 import 'package:lymphoma/presentation/pages/main/main_page.dart';
@@ -9,7 +10,7 @@ import 'package:lymphoma/presentation/routing/routes.dart';
 
 abstract class AppRouter {
   static final router = GoRouter(
-    initialLocation: Routes.start.path,
+    initialLocation: Routes.main.path,
     debugLogDiagnostics: true,
     routes: [
       GoRoute(
@@ -38,7 +39,18 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: Routes.main.path,
-        builder: (context, state) => const MainPage()
+        builder: (context, state) => const MainPage(),
+        redirect: (context, state) {
+          final userRepository = UserRepository();
+
+          if (!userRepository.isLoginIn) {
+            return Routes.start.path;
+          } else if (!userRepository.isConfirmed) {
+            return Routes.registrationStatus.path;
+          }
+
+          return null;
+        }
       )
     ]
   );

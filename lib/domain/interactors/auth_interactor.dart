@@ -1,3 +1,4 @@
+import 'package:injectable/injectable.dart';
 import 'package:lymphoma/consts/strings.dart';
 import 'package:lymphoma/data/repositories/auth_repository.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -17,9 +18,12 @@ enum LoginStatus {
   unknown
 }
 
+@injectable
 class AuthInteractor {
 
-  final _authRepository = AuthRepository();
+  AuthInteractor(this._authRepository);
+
+  late final AuthRepository _authRepository;
 
   Future<RegistrationStatus> register({
     required Map<String, Field> textFields,

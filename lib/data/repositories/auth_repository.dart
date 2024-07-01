@@ -1,5 +1,7 @@
+import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+@injectable
 class AuthRepository {
   Future<void> register({
     required String email,
@@ -30,4 +32,6 @@ class AuthRepository {
       rethrow;
     }
   }
+
+  void logout() => Supabase.instance.client.auth.signOut();
 }

@@ -23,4 +23,5 @@ class Field with _$Field {
   bool get isNotValid => error != null;
   bool get isEmpty => text?.isEmpty ?? true;
   bool get isNotEmpty => text?.isNotEmpty ?? false;
+
 }
