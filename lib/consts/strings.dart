@@ -53,6 +53,19 @@ abstract class AppStrings {
   static const emailAlreadyExist = "Пользователь уже существует";
 }
 
+abstract class TabNames {
+  static const records = "Записи";
+  static const patients = "Пациенты";
+  static const doctors = "Врачи";
+}
+
+abstract class ListTitles {
+  static const onCurrentWeek = "На этой неделе";
+  static const all = "Все";
+  static const favorites = "Избранные";
+  static const allList = "Весь список";
+}
+
 abstract class LogicStrings {
   static const init = "init";
   static const ok = "ok";
@@ -65,4 +78,10 @@ abstract class FieldNames {
   static const fullName = "fullName";
   static const phoneNumber = "phoneNumber";
   static const familyPhoneNumber = "familyPhoneNumber";
+  static const userRole = "userRole";
+}
+
+abstract class UserRoles {
+  static const patient = "patient";
+  static const doctor = "doctor";
 }

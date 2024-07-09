@@ -31,17 +31,17 @@ TextTheme textThemeData(ColorScheme colorScheme) => const TextTheme(
 
   bodyLarge: TextStyle(
     fontFamily: FontFamily.manrope,
-    fontWeight: FontWeight.bold,
+    fontWeight: FontWeight.w500,
     fontSize: 16,
   ),
   bodyMedium: TextStyle(
     fontFamily: FontFamily.manrope,
-    fontWeight: FontWeight.bold,
+    fontWeight: FontWeight.w500,
     fontSize: 14,
   ),
   bodySmall: TextStyle(
     fontFamily: FontFamily.manrope,
-    fontWeight: FontWeight.bold,
+    fontWeight: FontWeight.w500,
     fontSize: 12,
   ),
 );

@@ -42,6 +42,7 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   bool _checkLoginButtonEnabled(Map<String, Field> fields) {
+    if (fields.length != 2) return false;
     return fields.values.every((field) => field.isNotEmpty && field.isValid);
   }
 

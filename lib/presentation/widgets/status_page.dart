@@ -10,16 +10,14 @@ class StatusPage extends StatelessWidget {
     required this.subtitle,
     this.isOk = true,
     this.extra,
-    this.buttonText,
-    this.onButtonTapped
+    this.bottom
   });
 
   final bool isOk;
   final String title;
   final String subtitle;
   final Widget? extra;
-  final String? buttonText;
-  final VoidCallback? onButtonTapped;
+  final Widget? bottom;
 
   @override
   Widget build(BuildContext context) {
@@ -43,10 +41,7 @@ class StatusPage extends StatelessWidget {
               ],
             ),
           ),
-          buttonText != null ? ElevatedButton(
-            onPressed: onButtonTapped,
-            child: Text(buttonText ?? ""),
-          ) : const SizedBox.shrink(),
+          bottom ?? const SizedBox.shrink(),
           const SizedBox(height: 30)
         ],
       ),

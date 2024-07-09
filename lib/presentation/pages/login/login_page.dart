@@ -4,10 +4,11 @@ import 'package:go_router/go_router.dart';
 import 'package:lymphoma/di/dependencies.dart';
 import 'package:lymphoma/ext/context_ext.dart';
 import 'package:lymphoma/presentation/pages/login/cubit/login_cubit.dart';
+import 'package:lymphoma/presentation/widgets/app_bar/back_arrow.dart';
 
 import '../../../consts/strings.dart';
 import '../../routing/routes.dart';
-import '../../widgets/app_app_bar.dart';
+import '../../widgets/app_bar/app_app_bar.dart';
 import '../../widgets/input_field.dart';
 import '../../widgets/screen.dart';
 import 'cubit/login_state.dart';
@@ -29,7 +30,7 @@ class LoginPage extends StatelessWidget {
               SnackBar(content: Text(state.loginError, textAlign: TextAlign.center))
             );
           } else if (state.loginError == LogicStrings.ok) {
-            context.go(Routes.main.path);
+            context.go(Routes.patientMain.path);
           }
         },
         builder: (context, state) {
@@ -38,7 +39,7 @@ class LoginPage extends StatelessWidget {
               backgroundColor: context.colors.background,
               appBar: AppAppBar(
                 title: AppStrings.logon,
-                appBar: AppBar(),
+                leading: const BackArrow(),
               ),
               body: ScrollableScreen(
                   child: Column(

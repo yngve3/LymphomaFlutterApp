@@ -29,6 +29,7 @@ dependencies:
   easy_debounce: ^2.0.3
   get_it: ^7.7.0
   injectable: ^2.4.2
+  json_annotation: 4.9.0
 
 dev_dependencies:
   flutter_test:
@@ -42,6 +43,7 @@ dev_dependencies:
   injectable_generator:
 
 flutter_gen:
+  output: lib/gen/
   integrations:
     flutter_svg: true
 
@@ -57,5 +59,11 @@ flutter:
   fonts:
     - family: Manrope
       fonts:
-        - asset: assets/fonts/manrope.ttf
+        - asset: assets/fonts/manrope/Manrope-Bold.ttf
+        - asset: assets/fonts/manrope/Manrope-ExtraBold.ttf
+        - asset: assets/fonts/manrope/Manrope-ExtraLight.ttf
+        - asset: assets/fonts/manrope/Manrope-Light.ttf
+        - asset: assets/fonts/manrope/Manrope-Medium.ttf
+        - asset: assets/fonts/manrope/Manrope-Regular.ttf
+        - asset: assets/fonts/manrope/Manrope-SemiBold.ttf
 

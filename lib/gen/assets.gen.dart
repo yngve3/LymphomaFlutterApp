@@ -3,30 +3,48 @@
 ///  FlutterGen
 /// *****************************************************
 
-import 'package:flutter/services.dart';
 // coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
 
 import 'package:flutter/widgets.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vector_graphics/vector_graphics.dart';
 
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/ic_add_user.svg
+  SvgGenImage get icAddUser =>
+      const SvgGenImage('assets/icons/ic_add_user.svg');
+
   /// File path: assets/icons/ic_arrow_left.svg
   SvgGenImage get icArrowLeft =>
       const SvgGenImage('assets/icons/ic_arrow_left.svg');
 
+  /// File path: assets/icons/ic_articles.svg
+  SvgGenImage get icArticles =>
+      const SvgGenImage('assets/icons/ic_articles.svg');
+
   /// File path: assets/icons/ic_hide.svg
   SvgGenImage get icHide => const SvgGenImage('assets/icons/ic_hide.svg');
+
+  /// File path: assets/icons/ic_image.svg
+  SvgGenImage get icImage => const SvgGenImage('assets/icons/ic_image.svg');
 
   /// File path: assets/icons/ic_not_ok.svg
   SvgGenImage get icNotOk => const SvgGenImage('assets/icons/ic_not_ok.svg');
 
+  /// File path: assets/icons/ic_notifications.svg
+  SvgGenImage get icNotifications =>
+      const SvgGenImage('assets/icons/ic_notifications.svg');
+
   /// File path: assets/icons/ic_ok.svg
   SvgGenImage get icOk => const SvgGenImage('assets/icons/ic_ok.svg');
+
+  /// File path: assets/icons/ic_person.svg
+  SvgGenImage get icPerson => const SvgGenImage('assets/icons/ic_person.svg');
 
   /// File path: assets/icons/ic_show.svg
   SvgGenImage get icShow => const SvgGenImage('assets/icons/ic_show.svg');
@@ -34,9 +52,25 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_star.svg
   SvgGenImage get icStar => const SvgGenImage('assets/icons/ic_star.svg');
 
+  /// File path: assets/icons/ic_three_dots.svg
+  SvgGenImage get icThreeDots =>
+      const SvgGenImage('assets/icons/ic_three_dots.svg');
+
   /// List of all assets
-  List<SvgGenImage> get values =>
-      [icArrowLeft, icHide, icNotOk, icOk, icShow, icStar];
+  List<SvgGenImage> get values => [
+        icAddUser,
+        icArrowLeft,
+        icArticles,
+        icHide,
+        icImage,
+        icNotOk,
+        icNotifications,
+        icOk,
+        icPerson,
+        icShow,
+        icStar,
+        icThreeDots
+      ];
 }
 
 class $AssetsImagesGen {

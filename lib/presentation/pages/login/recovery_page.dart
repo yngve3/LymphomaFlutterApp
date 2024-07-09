@@ -4,12 +4,13 @@ import 'package:go_router/go_router.dart';
 import 'package:lymphoma/consts/dimens.dart';
 import 'package:lymphoma/ext/context_ext.dart';
 import 'package:lymphoma/presentation/pages/login/cubit/login_cubit.dart';
-import 'package:lymphoma/presentation/widgets/app_app_bar.dart';
+import 'package:lymphoma/presentation/widgets/app_bar/app_app_bar.dart';
 import 'package:lymphoma/presentation/widgets/icon_with_card.dart';
 
 import '../../../consts/strings.dart';
 import '../../../di/dependencies.dart';
 import '../../routing/routes.dart';
+import '../../widgets/app_bar/back_arrow.dart';
 import '../../widgets/input_field.dart';
 import '../../widgets/screen.dart';
 import 'cubit/login_state.dart';
@@ -26,8 +27,8 @@ class RecoveryPage extends StatelessWidget {
           final cubit = BlocProvider.of<LoginCubit>(context);
           return Scaffold(
             appBar: AppAppBar(
-              appBar: AppBar(),
               title: AppStrings.recovery,
+              leading: const BackArrow(),
             ),
             body: Screen(
               child: Column(

@@ -3,17 +3,18 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 @injectable
 class AuthRepository {
-  Future<void> register({
+  Future<User?> register({
     required String email,
     required String password,
     Map<String, dynamic>? userData,
   }) async {
     try {
-      await Supabase.instance.client.auth.signUp(
+      final res = await Supabase.instance.client.auth.signUp(
           email: email,
           password: password,
           data: userData
       );
+      return res.user;
     } on AuthException catch (_) {
       rethrow;
     }

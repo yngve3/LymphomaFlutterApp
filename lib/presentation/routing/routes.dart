@@ -4,7 +4,9 @@ abstract class Routes {
   static SimpleRoute recovery = const SimpleRoute("/start/login/recovery");
   static SimpleRoute registration = const SimpleRoute("/start/registration");
   static SimpleRoute registrationStatus = const SimpleRoute("/registrationStatus");
-  static SimpleRoute main = const SimpleRoute("/main");
+
+  static SimpleRoute doctorMain = const SimpleRoute("/doctor");
+  static SimpleRoute patientMain = const SimpleRoute("/patient");
 }
 
 abstract class Route {

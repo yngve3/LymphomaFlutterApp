@@ -8,12 +8,14 @@ class Screen extends StatelessWidget {
     super.key,
     required this.child,
     this.padding,
-    this.systemColor
+    this.systemColor,
+    this.topPadding = 35
   });
 
   final Widget child;
   final EdgeInsets? padding;
   final Color? systemColor;
+  final double topPadding;
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +25,10 @@ class Screen extends StatelessWidget {
         systemNavigationBarColor: systemColor ?? context.colors.background,
       ),
       child: Padding(
-        padding: padding ?? const EdgeInsets.only(
+        padding: padding ?? EdgeInsets.only(
           left: AppDimens.padding,
           right: AppDimens.padding,
-          top: 35
+          top: topPadding
         ),
         child: child,
       ),
@@ -37,14 +39,17 @@ class Screen extends StatelessWidget {
 class ScrollableScreen extends StatelessWidget {
   const ScrollableScreen({
     super.key,
-    required this.child
+    required this.child,
+    this.topPadding = 35
   });
 
   final Widget child;
+  final double topPadding;
 
   @override
   Widget build(BuildContext context) {
     return Screen(
+      topPadding: topPadding,
       child: Column(
         children: [
           Expanded(

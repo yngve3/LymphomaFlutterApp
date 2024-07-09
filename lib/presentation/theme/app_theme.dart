@@ -4,6 +4,7 @@ import 'package:lymphoma/presentation/theme/src/button_theme.dart';
 import 'package:lymphoma/presentation/theme/src/card_theme.dart';
 import 'package:lymphoma/presentation/theme/src/decoration_theme.dart';
 import 'package:lymphoma/presentation/theme/src/snack_bar_theme.dart';
+import 'package:lymphoma/presentation/theme/src/tab_bar_theme.dart';
 import 'package:lymphoma/presentation/theme/src/text_theme.dart';
 
 abstract class AppTheme {
@@ -18,6 +19,7 @@ abstract class AppTheme {
     final cardTheme = cardThemeData();
     final inputDecorationTheme = inputDecorationThemeData(colorScheme, textTheme);
     final snackBarTheme = snackBarThemeData(colorScheme, textTheme);
+    final tabBarTheme = tabBarThemeData(colorScheme, textTheme);
     return ThemeData(
       useMaterial3: true,
       colorScheme: colorScheme,
@@ -27,7 +29,8 @@ abstract class AppTheme {
       cardTheme: cardTheme,
       iconButtonTheme: iconButtonTheme,
       inputDecorationTheme: inputDecorationTheme,
-      snackBarTheme: snackBarTheme
+      snackBarTheme: snackBarTheme,
+      tabBarTheme: tabBarTheme
     );
   }
 }

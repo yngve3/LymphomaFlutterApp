@@ -3,12 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lymphoma/ext/context_ext.dart';
 import 'package:lymphoma/presentation/pages/registrations/cubit/registration_cubit.dart';
-import 'package:lymphoma/presentation/widgets/app_app_bar.dart';
+import 'package:lymphoma/presentation/widgets/app_bar/app_app_bar.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../consts/strings.dart';
 import '../../../di/dependencies.dart';
 import '../../routing/routes.dart';
+import '../../widgets/app_bar/back_arrow.dart';
 import '../../widgets/enter_date_field.dart';
 import '../../widgets/input_field.dart';
 import '../../widgets/screen.dart';
@@ -57,9 +58,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
         },
         child: Scaffold(
           appBar: AppAppBar(
-              appBar: AppBar(),
               title: AppStrings.registration,
-              onBackArrowTapped: currentPage == 0 ? null : _previousPage
+              leading: BackArrow(
+                onPressed: currentPage == 0 ? null : _previousPage,
+              ),
           ),
           body: Stack(
             alignment: Alignment.bottomCenter,

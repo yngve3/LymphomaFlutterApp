@@ -2,35 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lymphoma/ext/context_ext.dart';
 
 import '../../gen/assets.gen.dart';
-
-class IconWithCard extends StatelessWidget {
-  const IconWithCard({
-    super.key,
-    required this.icon,
-    this.isBigPadding = false,
-    this.padding,
-    this.cardColor
-  });
-
-  final Widget icon;
-  final bool isBigPadding;
-  final EdgeInsetsGeometry? padding;
-  final Color? cardColor;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      color: cardColor,
-      child: Padding(
-        padding: const EdgeInsets.all(14),
-        child: SizedBox.square(
-          dimension: 30,
-          child: icon,
-        ),
-      )
-    );
-  }
-}
+import 'app_icon_button.dart';
 
 class IconWithCardVariant extends StatelessWidget {
   const IconWithCardVariant({
@@ -43,12 +15,13 @@ class IconWithCardVariant extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final iconColor = ColorFilter.mode(context.colors.onPrimary, BlendMode.srcIn);
-    return IconWithCard(
+    const double iconSize = 23;
+    return AppIconButton(
       icon: isOk
-          ? Assets.icons.icOk.svg(colorFilter: iconColor)
-          : Assets.icons.icNotOk.svg(colorFilter: iconColor),
-      isBigPadding: true,
-      cardColor: isOk ? context.colors.surfaceVariant : context.colors.error
+          ? Assets.icons.icOk.svg(colorFilter: iconColor, height: iconSize, width: iconSize)
+          : Assets.icons.icNotOk.svg(colorFilter: iconColor, height: iconSize, width: iconSize),
+      cardColor: isOk ? context.colors.surfaceVariant : context.colors.error,
+      size: 56,
     );
   }
 }
