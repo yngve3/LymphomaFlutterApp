@@ -19,7 +19,7 @@ class TitledList extends StatelessWidget {
         Text(title, style: context.textTheme.headlineMedium),
         const SizedBox(height: 12),
         Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: list.map((element) =>
               Padding(
                 padding: const EdgeInsets.only(bottom: 12),

@@ -6,6 +6,10 @@ abstract class Routes {
   static SimpleRoute registrationStatus = const SimpleRoute("/registrationStatus");
 
   static SimpleRoute doctorMain = const SimpleRoute("/doctor");
+  static SimpleRoute doctorProfile = const SimpleRoute("/doctor/profile");
+  static SimpleRoute doctorNotifications = const SimpleRoute("/doctor/notifications");
+  static SimpleRoute doctorNotificationsRequests = const SimpleRoute("/doctor/notifications/requests");
+  static SimpleRoute doctorNotificationsRequest = const SimpleRoute("/doctor/notifications/requests/request");
   static SimpleRoute patientMain = const SimpleRoute("/patient");
 }
 

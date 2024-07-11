@@ -23,6 +23,10 @@ class Patient {
     );
   }
 
+  factory Patient.empty() {
+    return Patient(id: "", fullName: "", phone: "", familyPhone: "", birthdate: DateTime.now(), diagnosis: "");
+  }
+
   final String id;
   final String fullName;
   final String phone;

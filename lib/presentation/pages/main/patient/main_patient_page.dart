@@ -31,12 +31,6 @@ class MainPatientPage extends StatelessWidget {
                     },
                     child: const Text("Выйти"),
                   ),
-                  FilledButton(
-                    onPressed: () {
-
-                    },
-                    child: const Text("Тест"),
-                  ),
                 ],
               )
           );

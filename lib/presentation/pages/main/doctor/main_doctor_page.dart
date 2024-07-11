@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lymphoma/data/repositories/auth_repository.dart';
 import 'package:lymphoma/presentation/pages/main/doctor/cubit/main_doctor_page_cubit.dart';
 import 'package:lymphoma/presentation/widgets/app_bar/app_app_bar.dart';
 import 'package:lymphoma/presentation/widgets/app_icon_button.dart';
@@ -32,8 +31,7 @@ class MainDoctorPage extends StatelessWidget {
                 leading: AppIconButton(
                   icon: Assets.icons.icPerson.svg(),
                   onPressed: () {
-                    AuthRepository().logout();
-                    context.go(Routes.start.path);
+                    context.go(Routes.doctorProfile.path);
                   },
                 ),
                 actions: [
@@ -42,18 +40,19 @@ class MainDoctorPage extends StatelessWidget {
                   ),
                   AppIconButton(
                     icon: Assets.icons.icNotifications.svg(),
+                    onPressed: () => context.go(Routes.doctorNotifications.path),
                   ),
                 ],
               ),
               body: Padding(
-                padding: EdgeInsets.only(top: 24),
+                padding: const EdgeInsets.only(top: 24),
                 child: AppTabBarView(
-                  tabNames: [
+                  tabNames: const [
                     TabNames.records,
                     TabNames.patients
                   ],
                   tabScreens: [
-                    RecordsPage(),
+                    const RecordsPage(),
                     PatientsPage(
                       patients: state.allPatients,
                       favoritePatients: state.favoritePatients,
@@ -82,24 +81,14 @@ class RecordsPage extends StatelessWidget {
           TitledList(
             title: ListTitles.onCurrentWeek,
             list: [
-              Card(
-                child: Text("First row"),
-              ),
-              Card(
-                child: Text("Second row"),
-              ),
+
             ]
           ),
           SizedBox(height: 11),
           TitledList(
             title: ListTitles.all,
             list: [
-              Card(
-                child: Text("First row"),
-              ),
-              Card(
-                child: Text("Second row"),
-              ),
+
             ]
           ),
         ],

@@ -14,4 +14,8 @@ class PatientsInteractor {
   Future<bool> get currentPatientIsVerified => _patientsRepository.patientIsVerified(_userRepository.id ?? "");
 
   Future<List<Patient>> get allPatients => _patientsRepository.getAllPatients();
+
+  Future<Patient> getPatient(String id) => _patientsRepository.getPatient(id);
+
+  void updateVerified(bool isVerified, String id) => _patientsRepository.updateVerified(isVerified, id);
 }

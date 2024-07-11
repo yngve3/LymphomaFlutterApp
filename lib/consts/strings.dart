@@ -51,6 +51,18 @@ abstract class AppStrings {
   static const invalidLoginOrPassword = "Неправильные логин или пароль";
   static const unknownError = "Неизвестная ошибка";
   static const emailAlreadyExist = "Пользователь уже существует";
+  static const profile = "Профиль";
+  static const uploadImage = "Загрузить изображение";
+  static const changeImage = "Изменить изображение";
+  static const typeDoctor = "Направление";
+  static const room = "Кабинет";
+  static const phoneDoctor = "Телефон для связи";
+  static const notifications = "Уведомления";
+  static const newPatients = "Новые пользователи";
+  static const therapist = "Лечащий врач";
+  static const diagnosis = "Диагноз";
+  static const hystDiagnosis = "Гистологический диагноз";
+  static const treatment = "Назначенное лечение";
 }
 
 abstract class TabNames {
@@ -64,11 +76,31 @@ abstract class ListTitles {
   static const all = "Все";
   static const favorites = "Избранные";
   static const allList = "Весь список";
+  static const registrationRequests = "Запросы на регистрацию";
 }
 
 abstract class LogicStrings {
   static const init = "init";
   static const ok = "ok";
+}
+
+abstract class TableNames {
+  static const doctors = "doctors";
+  static const patients = "patients";
+}
+
+abstract class TableFieldNames {
+  static const id = "id";
+  static const fullName = "full_name";
+  static const birthdate = "dob";
+  static const phone = "phone";
+  static const familyPhone = "phone_2";
+  static const imageURL = "image_url";
+  static const doctorType = "type";
+  static const doctorRoom = "room";
+  static const patientIsVerified = "is_verified";
+  static const diagnosis = "diagnosis";
+  static const role = "user_role";
 }
 
 abstract class FieldNames {
@@ -79,6 +111,11 @@ abstract class FieldNames {
   static const phoneNumber = "phoneNumber";
   static const familyPhoneNumber = "familyPhoneNumber";
   static const userRole = "userRole";
+
+  static const therapist = "therapist";
+  static const treatment = "treatment";
+  static const diagnosis = "diagnosis";
+  static const hystDiagnosis = "hystDiagnosis";
 }
 
 abstract class UserRoles {

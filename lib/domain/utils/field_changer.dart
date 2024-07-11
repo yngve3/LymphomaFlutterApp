@@ -33,7 +33,7 @@ class FieldChanger {
       FieldNames.phoneNumber => AppStrings.phoneIncorrect,
       FieldNames.familyPhoneNumber => AppStrings.phoneIncorrect,
       FieldNames.repeatedPassword => AppStrings.passwordsNotEqual,
-      _ => null
+      _ => "Поле не должно быть пустым"
     };
   }
 }

@@ -13,11 +13,12 @@ class InputField extends StatefulWidget {
     required this.hint,
     this.isPassword = false,
     this.requestFocus = false,
+    this.isMultiply = false,
     this.textInputAction,
     this.textInputType,
     this.label,
     this.onChanged,
-    this.field
+    this.field,
   });
 
   final String hint;
@@ -28,6 +29,7 @@ class InputField extends StatefulWidget {
   final String? label;
   final StringCallback? onChanged;
   final Field? field;
+  final bool isMultiply;
 
   @override
   State<InputField> createState() => _InputFieldState();
@@ -71,6 +73,7 @@ class _InputFieldState extends State<InputField> {
     return FieldWithLabel(
       label: widget.label,
       child: TextField(
+        maxLines: widget.isMultiply ? 5 : 1,
         onChanged: widget.onChanged,
         textInputAction: widget.textInputAction,
         keyboardType: widget.textInputType,
