@@ -1,4 +1,5 @@
 import 'package:injectable/injectable.dart';
+import 'package:lymphoma/ext/list_ext.dart';
 
 import '../../consts/strings.dart';
 import '../models/field/field.dart';
@@ -6,34 +7,21 @@ import '../validators/validator.dart';
 
 @injectable
 class FieldChanger {
-  Map<String, Field> onFieldChanged(Map<String, Field> fields, String fieldName, String value) {
-    final res = fieldName == FieldNames.repeatedPassword
-        ? value == fields[FieldNames.password]?.text
-        : ValidatorApplier(ValidatorFactory()).validate(fieldName, value);
+  List<Field> onFieldChanged(List<Field> fields, Field field, dynamic value) {
+    final isValid = field.label == FieldLabels.repeatPassword
+        ? value == fields.findByLabel(FieldLabels.password).text
+        : ValidatorApplier(ValidatorFactory()).validate(field, value);
 
-    final error = _getErrorText(fieldName, res);
-    _updateOrInsert(fields, value, fieldName, error);
+    fields[fields.indexOf(field)] = field.copyWith(isError: !isValid, text: value);
     return fields;
   }
 
-  void _updateOrInsert(Map<String, Field> fields, String value, String fieldName, String? error) {
-    if (!fields.containsKey(fieldName)) {
-      fields.addAll({fieldName: Field(text: value, error: error)});
-    } else {
-      fields.update(fieldName, (field) => field.copyWith(error: error, text: value));
-    }
-  }
-
-  String? _getErrorText(String fieldName, bool validationResult) {
-    if (validationResult == true) return null;
-    return switch(fieldName) {
-      FieldNames.email => AppStrings.emailIncorrect,
-      FieldNames.password => AppStrings.passwordIncorrect,
-      FieldNames.fullName => AppStrings.fullNameIncorrect,
-      FieldNames.phoneNumber => AppStrings.phoneIncorrect,
-      FieldNames.familyPhoneNumber => AppStrings.phoneIncorrect,
-      FieldNames.repeatedPassword => AppStrings.passwordsNotEqual,
-      _ => "Поле не должно быть пустым"
-    };
+  List<Field> generate(List<String> fieldNames) {
+    return fieldNames.map((fieldName) {
+      return switch(fields[fieldName]?.type) {
+        FieldType.date || FieldType.time => DateField(label: fieldName, date: DateTime.now()),
+        _ => Field(label: fieldName)
+      };
+    }).toList();
   }
 }

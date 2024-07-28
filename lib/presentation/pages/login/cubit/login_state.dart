@@ -11,6 +11,6 @@ class LoginState with _$LoginState {
     @Default(false) bool isButtonLogInEnabled,
     @Default(false) bool isButtonRecoveryEnabled,
     @Default(LogicStrings.init) String loginError,
-    @Default({}) Map<String, Field> textFields,
+    @Default([]) List<Field> textFields,
   }) = _LoginState;
 }

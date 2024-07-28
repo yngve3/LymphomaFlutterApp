@@ -10,8 +10,11 @@ import 'package:lymphoma/presentation/widgets/request_card.dart';
 import 'package:lymphoma/presentation/widgets/screen.dart';
 import 'package:lymphoma/presentation/widgets/tab_bar.dart';
 import 'package:lymphoma/presentation/widgets/titled_list.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../../../consts/strings.dart';
+import '../../../../domain/models/loading_state.dart';
+import '../../../../domain/models/patient/patient.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../routing/routes.dart';
 import 'cubit/notifications_doctor_state.dart';
@@ -21,11 +24,9 @@ class NotificationsDoctorPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => NotificationsDoctorCubit(),
-      child: BlocBuilder<NotificationsDoctorCubit, NotificationsDoctorState>(
-        builder: (context, state) {
-          return Scaffold(
+    return BlocBuilder<NotificationsDoctorCubit, NotificationsDoctorState>(
+      builder: (context, state) {
+        return Scaffold(
             appBar: AppAppBar(
               title: AppStrings.notifications,
               leading: const BackArrow(),
@@ -39,7 +40,7 @@ class NotificationsDoctorPage extends StatelessWidget {
             body: const Padding(
               padding: EdgeInsets.only(top: 24),
               child: AppTabBarView(
-                tabNames: const [
+                tabNames: [
                   TabNames.patients,
                   TabNames.doctors,
                 ],
@@ -80,33 +81,67 @@ class NotificationsDoctorPage extends StatelessWidget {
                 ],
               ),
             )
-          );
-        },
-      )
+        );
+      },
     );
   }
 }
 
 class RequestsFromPatients extends StatelessWidget {
-  const RequestsFromPatients({super.key});
+  const RequestsFromPatients({
+    super.key
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppAppBar(
-        title: AppStrings.newPatients,
-        leading: const BackArrow(),
-      ),
-      body: ScrollableScreen(
-        topPadding: 31,
-        child: TitledList(
-          title: ListTitles.registrationRequests,
-          list: [
-            RequestCard()
-          ],
-        ),
-      ),
+    return BlocBuilder<NotificationsDoctorCubit, NotificationsDoctorState>(
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppAppBar(
+            title: AppStrings.newPatients,
+            leading: const BackArrow(),
+          ),
+          body: ScrollableScreen(
+            topPadding: 31,
+            child: TitledList(
+              title: "Запросы на регистрацию",
+              list: _getWaitingPatients(state.patients, state.loadingState),
+            ),
+          ),
+        );
+      },
     );
+  }
+
+  List<Widget> _getWaitingPatients(List<Patient> patients, LoadingState loadingState) {
+    return switch(loadingState) {
+      LoadingState.ok => patients.map((patient) => RequestCard(
+        patient: patient,
+      )).toList(),
+      LoadingState.loading => [
+        Shimmer.fromColors(
+          baseColor: Colors.grey.shade300,
+          highlightColor: Colors.grey.shade100,
+          child: Column(
+            children: [
+              RequestCard(patient: Patient.empty()),
+              const SizedBox(height: 12),
+              RequestCard(patient: Patient.empty()),
+              const SizedBox(height: 12),
+              RequestCard(patient: Patient.empty()),
+              const SizedBox(height: 12),
+              RequestCard(patient: Patient.empty()),
+            ],
+          )
+        )
+      ],
+      LoadingState.error => const [
+        EmptyListMessage(
+          title: "Актуальных запросов нет",
+          subtitle: "Запросы появятся после регистрации новых пациентов",
+        )
+      ]
+    };
   }
 }
 

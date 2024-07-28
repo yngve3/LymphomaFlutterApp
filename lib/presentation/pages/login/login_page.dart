@@ -9,7 +9,7 @@ import 'package:lymphoma/presentation/widgets/app_bar/back_arrow.dart';
 import '../../../consts/strings.dart';
 import '../../routing/routes.dart';
 import '../../widgets/app_bar/app_app_bar.dart';
-import '../../widgets/input_field.dart';
+import '../../widgets/field_list.dart';
 import '../../widgets/screen.dart';
 import 'cubit/login_state.dart';
 
@@ -44,21 +44,9 @@ class LoginPage extends StatelessWidget {
               body: ScrollableScreen(
                   child: Column(
                     children: [
-                      InputField(
-                        hint: AppStrings.enterEmail,
-                        label: AppStrings.email,
-                        textInputAction: TextInputAction.next,
-                        textInputType: TextInputType.emailAddress,
-                        onChanged: (value) => cubit.onFieldChanged(FieldNames.email, value),
-                        field: state.textFields[FieldNames.email],
-                      ),
-                      const SizedBox(height: 16),
-                      InputField(
-                        hint: AppStrings.enterPassword,
-                        label: AppStrings.password,
-                        isPassword: true,
-                        onChanged: (value) => cubit.onFieldChanged(FieldNames.password, value),
-                        field: state.textFields[FieldNames.password],
+                      FieldList(
+                        fields: state.textFields,
+                        onChanged: cubit.onFieldChanged,
                       ),
                       const SizedBox(height: 40),
                       FilledButton(

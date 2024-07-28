@@ -5,25 +5,35 @@ class TitledList extends StatelessWidget {
   const TitledList({
     super.key,
     required this.title,
-    required this.list
+    this.list = const [],
+    this.trailing,
+    this.child
   });
 
   final String title;
   final List<Widget> list;
+  final Widget? child;
+  final Widget? trailing;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text(title, style: context.textTheme.headlineMedium),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(title, style: context.textTheme.headlineMedium),
+            trailing ?? const SizedBox.shrink()
+          ],
+        ),
         const SizedBox(height: 12),
-        Column(
+        child ?? Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: list.map((element) =>
               Padding(
-                padding: const EdgeInsets.only(bottom: 12),
-                child: element
+                  padding: const EdgeInsets.only(bottom: 12),
+                  child: element
               )
           ).toList(),
         )

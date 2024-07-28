@@ -6,8 +6,9 @@ import 'package:lymphoma/ext/context_ext.dart';
 import 'package:lymphoma/presentation/pages/profile/doctor/cubit/doctor_profile_page_cubit.dart';
 import 'package:lymphoma/presentation/widgets/app_bar/app_app_bar.dart';
 import 'package:lymphoma/presentation/widgets/app_bar/back_arrow.dart';
+import 'package:lymphoma/presentation/widgets/app_bar/logout_action.dart';
 import 'package:lymphoma/presentation/widgets/empty_list_message.dart';
-import 'package:lymphoma/presentation/widgets/field_info.dart';
+import 'package:lymphoma/presentation/widgets/field_list.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../../consts/dimens.dart';
@@ -26,6 +27,9 @@ class DoctorProfilePage extends StatelessWidget {
       appBar: AppAppBar(
         title: AppStrings.profile,
         leading: const BackArrow(),
+        actions: const [
+          LogoutAction()
+        ],
       ),
       body: const DoctorProfilePageContent(),
     );
@@ -43,32 +47,17 @@ class DoctorProfilePageContent extends StatelessWidget {
           LoadingState.loading => Shimmer.fromColors(
             baseColor: Colors.grey.shade300,
             highlightColor: Colors.grey.shade100,
-            child: const ScrollableScreen(
+            child: ScrollableScreen(
               topPadding: 28,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  ImageProfile(imageURL: ""),
-                  SizedBox(height: 28),
-                  FieldInfo(
-                    title: "",
-                    subtitle: "",
-                  ),
-                  SizedBox(height: 8),
-                  FieldInfo(
-                    title: "",
-                    subtitle: "",
-                  ),
-                  SizedBox(height: 8),
-                  FieldInfo(
-                    title: "",
-                    subtitle: "",
-                  ),
-                  SizedBox(height: 8),
-                  FieldInfo(
-                    title: "",
-                    subtitle: "",
-                  ),
+                  const ImageProfile(imageURL: ""),
+                  const SizedBox(height: 28),
+                  FieldList(
+                    fields: state.textFields,
+                    onlyRead: true,
+                  )
                 ],
               ),
             )
@@ -89,25 +78,10 @@ class DoctorProfilePageContent extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 28),
-                FieldInfo(
-                  title: AppStrings.fullName,
-                  subtitle: state.fullName,
-                ),
-                const SizedBox(height: 8),
-                FieldInfo(
-                  title: AppStrings.typeDoctor,
-                  subtitle: state.type,
-                ),
-                const SizedBox(height: 8),
-                FieldInfo(
-                  title: AppStrings.room,
-                  subtitle: state.room,
-                ),
-                const SizedBox(height: 8),
-                FieldInfo(
-                  title: AppStrings.phoneDoctor,
-                  subtitle: state.phone,
-                ),
+                FieldList(
+                  fields: state.textFields,
+                  onlyRead: true,
+                )
               ],
             ),
           ),

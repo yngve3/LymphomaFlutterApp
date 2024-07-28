@@ -16,10 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$DoctorProfilePageState {
-  String get fullName => throw _privateConstructorUsedError;
-  String get type => throw _privateConstructorUsedError;
-  String get room => throw _privateConstructorUsedError;
-  String get phone => throw _privateConstructorUsedError;
+  List<Field> get textFields => throw _privateConstructorUsedError;
   LoadingState get loadingState => throw _privateConstructorUsedError;
   LoadingState get photoUpdateState => throw _privateConstructorUsedError;
   String? get imageURL => throw _privateConstructorUsedError;
@@ -36,10 +33,7 @@ abstract class $DoctorProfilePageStateCopyWith<$Res> {
       _$DoctorProfilePageStateCopyWithImpl<$Res, DoctorProfilePageState>;
   @useResult
   $Res call(
-      {String fullName,
-      String type,
-      String room,
-      String phone,
+      {List<Field> textFields,
       LoadingState loadingState,
       LoadingState photoUpdateState,
       String? imageURL});
@@ -59,31 +53,16 @@ class _$DoctorProfilePageStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fullName = null,
-    Object? type = null,
-    Object? room = null,
-    Object? phone = null,
+    Object? textFields = null,
     Object? loadingState = null,
     Object? photoUpdateState = null,
     Object? imageURL = freezed,
   }) {
     return _then(_value.copyWith(
-      fullName: null == fullName
-          ? _value.fullName
-          : fullName // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String,
-      room: null == room
-          ? _value.room
-          : room // ignore: cast_nullable_to_non_nullable
-              as String,
-      phone: null == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String,
+      textFields: null == textFields
+          ? _value.textFields
+          : textFields // ignore: cast_nullable_to_non_nullable
+              as List<Field>,
       loadingState: null == loadingState
           ? _value.loadingState
           : loadingState // ignore: cast_nullable_to_non_nullable
@@ -110,10 +89,7 @@ abstract class _$$DoctorProfilePageStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String fullName,
-      String type,
-      String room,
-      String phone,
+      {List<Field> textFields,
       LoadingState loadingState,
       LoadingState photoUpdateState,
       String? imageURL});
@@ -132,31 +108,16 @@ class __$$DoctorProfilePageStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fullName = null,
-    Object? type = null,
-    Object? room = null,
-    Object? phone = null,
+    Object? textFields = null,
     Object? loadingState = null,
     Object? photoUpdateState = null,
     Object? imageURL = freezed,
   }) {
     return _then(_$DoctorProfilePageStateImpl(
-      fullName: null == fullName
-          ? _value.fullName
-          : fullName // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String,
-      room: null == room
-          ? _value.room
-          : room // ignore: cast_nullable_to_non_nullable
-              as String,
-      phone: null == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String,
+      textFields: null == textFields
+          ? _value._textFields
+          : textFields // ignore: cast_nullable_to_non_nullable
+              as List<Field>,
       loadingState: null == loadingState
           ? _value.loadingState
           : loadingState // ignore: cast_nullable_to_non_nullable
@@ -177,26 +138,21 @@ class __$$DoctorProfilePageStateImplCopyWithImpl<$Res>
 
 class _$DoctorProfilePageStateImpl implements _DoctorProfilePageState {
   const _$DoctorProfilePageStateImpl(
-      {this.fullName = "",
-      this.type = "",
-      this.room = "",
-      this.phone = "",
+      {final List<Field> textFields = const [],
       this.loadingState = LoadingState.ok,
       this.photoUpdateState = LoadingState.ok,
-      this.imageURL});
+      this.imageURL})
+      : _textFields = textFields;
 
+  final List<Field> _textFields;
   @override
   @JsonKey()
-  final String fullName;
-  @override
-  @JsonKey()
-  final String type;
-  @override
-  @JsonKey()
-  final String room;
-  @override
-  @JsonKey()
-  final String phone;
+  List<Field> get textFields {
+    if (_textFields is EqualUnmodifiableListView) return _textFields;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_textFields);
+  }
+
   @override
   @JsonKey()
   final LoadingState loadingState;
@@ -208,7 +164,7 @@ class _$DoctorProfilePageStateImpl implements _DoctorProfilePageState {
 
   @override
   String toString() {
-    return 'DoctorProfilePageState(fullName: $fullName, type: $type, room: $room, phone: $phone, loadingState: $loadingState, photoUpdateState: $photoUpdateState, imageURL: $imageURL)';
+    return 'DoctorProfilePageState(textFields: $textFields, loadingState: $loadingState, photoUpdateState: $photoUpdateState, imageURL: $imageURL)';
   }
 
   @override
@@ -216,11 +172,8 @@ class _$DoctorProfilePageStateImpl implements _DoctorProfilePageState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DoctorProfilePageStateImpl &&
-            (identical(other.fullName, fullName) ||
-                other.fullName == fullName) &&
-            (identical(other.type, type) || other.type == type) &&
-            (identical(other.room, room) || other.room == room) &&
-            (identical(other.phone, phone) || other.phone == phone) &&
+            const DeepCollectionEquality()
+                .equals(other._textFields, _textFields) &&
             (identical(other.loadingState, loadingState) ||
                 other.loadingState == loadingState) &&
             (identical(other.photoUpdateState, photoUpdateState) ||
@@ -230,8 +183,12 @@ class _$DoctorProfilePageStateImpl implements _DoctorProfilePageState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, fullName, type, room, phone,
-      loadingState, photoUpdateState, imageURL);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_textFields),
+      loadingState,
+      photoUpdateState,
+      imageURL);
 
   @JsonKey(ignore: true)
   @override
@@ -243,22 +200,13 @@ class _$DoctorProfilePageStateImpl implements _DoctorProfilePageState {
 
 abstract class _DoctorProfilePageState implements DoctorProfilePageState {
   const factory _DoctorProfilePageState(
-      {final String fullName,
-      final String type,
-      final String room,
-      final String phone,
+      {final List<Field> textFields,
       final LoadingState loadingState,
       final LoadingState photoUpdateState,
       final String? imageURL}) = _$DoctorProfilePageStateImpl;
 
   @override
-  String get fullName;
-  @override
-  String get type;
-  @override
-  String get room;
-  @override
-  String get phone;
+  List<Field> get textFields;
   @override
   LoadingState get loadingState;
   @override

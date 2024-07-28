@@ -3,12 +3,12 @@
 ///  FlutterGen
 /// *****************************************************
 
+import 'package:flutter/services.dart';
 // coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
 
 import 'package:flutter/widgets.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vector_graphics/vector_graphics.dart';
 
@@ -31,6 +31,15 @@ class $AssetsIconsGen {
   SvgGenImage get icArticles =>
       const SvgGenImage('assets/icons/ic_articles.svg');
 
+  /// File path: assets/icons/ic_bed.svg
+  SvgGenImage get icBed => const SvgGenImage('assets/icons/ic_bed.svg');
+
+  /// File path: assets/icons/ic_brain.svg
+  SvgGenImage get icBrain => const SvgGenImage('assets/icons/ic_brain.svg');
+
+  /// File path: assets/icons/ic_dna.svg
+  SvgGenImage get icDna => const SvgGenImage('assets/icons/ic_dna.svg');
+
   /// File path: assets/icons/ic_hide.svg
   SvgGenImage get icHide => const SvgGenImage('assets/icons/ic_hide.svg');
 
@@ -46,6 +55,10 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/ic_ok.svg
   SvgGenImage get icOk => const SvgGenImage('assets/icons/ic_ok.svg');
+
+  /// File path: assets/icons/ic_oncologist.svg
+  SvgGenImage get icOncologist =>
+      const SvgGenImage('assets/icons/ic_oncologist.svg');
 
   /// File path: assets/icons/ic_person.svg
   SvgGenImage get icPerson => const SvgGenImage('assets/icons/ic_person.svg');
@@ -66,11 +79,15 @@ class $AssetsIconsGen {
         icArrowLeft,
         icArrowRight,
         icArticles,
+        icBed,
+        icBrain,
+        icDna,
         icHide,
         icImage,
         icNotOk,
         icNotifications,
         icOk,
+        icOncologist,
         icPerson,
         icShow,
         icStar,

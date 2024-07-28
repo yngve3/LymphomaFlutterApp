@@ -8,6 +8,8 @@ class Doctor {
     this.imageURL
   });
 
+  bool get isEmpty => id == "";
+
   factory Doctor.empty() {
     return const Doctor(
       id: "",
@@ -19,13 +21,14 @@ class Doctor {
   }
 
   factory Doctor.fromJson(Map<String, dynamic> json, {String? imageURL}) {
+    if (json.isEmpty) return Doctor.empty();
     return Doctor(
       id: json['id'],
       fullName: json['full_name'],
       phone: json['phone'],
       room: json['room'],
       type: json['type'],
-      imageURL: imageURL
+      imageURL: json['image_url'] ?? imageURL
     );
   }
 

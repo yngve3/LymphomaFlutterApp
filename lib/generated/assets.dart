@@ -2,10 +2,13 @@
 class Assets {
   Assets._();
 
-  static const String iconsArrowRight = 'assets/icons/ic_arrow_right.svg';
   static const String iconsIcAddUser = 'assets/icons/ic_add_user.svg';
   static const String iconsIcArrowLeft = 'assets/icons/ic_arrow_left.svg';
+  static const String iconsIcArrowRight = 'assets/icons/ic_arrow_right.svg';
   static const String iconsIcArticles = 'assets/icons/ic_articles.svg';
+  static const String iconsIcBed = 'assets/icons/ic_bed.svg';
+  static const String iconsIcBrain = 'assets/icons/ic_brain.svg';
+  static const String iconsIcDna = 'assets/icons/ic_dna.svg';
   static const String iconsIcHide = 'assets/icons/ic_hide.svg';
   static const String iconsIcImage = 'assets/icons/ic_image.svg';
   static const String iconsIcNotOk = 'assets/icons/ic_not_ok.svg';
@@ -15,6 +18,7 @@ class Assets {
   static const String iconsIcShow = 'assets/icons/ic_show.svg';
   static const String iconsIcStar = 'assets/icons/ic_star.svg';
   static const String iconsIcThreeDots = 'assets/icons/ic_three_dots.svg';
+  static const String iconsOncologist = 'assets/icons/ic_oncologist.svg';
   static const String imagesImgStartPage = 'assets/images/img_start_page.png';
   static const String imagesImgSvg = 'assets/images/img_svg.svg';
   static const String manropeManropeBold = 'assets/fonts/manrope/Manrope-Bold.ttf';

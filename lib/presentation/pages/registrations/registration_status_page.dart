@@ -5,7 +5,7 @@ import 'package:lymphoma/ext/context_ext.dart';
 
 import '../../../consts/strings.dart';
 import '../../routing/routes.dart';
-import '../../widgets/status_page.dart';
+import '../../widgets/status_page/status_page.dart';
 
 class RegistrationStatusPage extends StatelessWidget {
   const RegistrationStatusPage({super.key});

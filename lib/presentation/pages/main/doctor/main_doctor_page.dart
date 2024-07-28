@@ -146,7 +146,7 @@ class PatientsPage extends StatelessWidget {
       )];
     }
 
-    return favoritePatients.map((patient) => PatientCard(patient: patient, isFavorite: true,)).toList();
+    return favoritePatients.map((patient) => PatientCard(patient: patient, isFavorite: true)).toList();
   }
 }
 

@@ -19,7 +19,7 @@ mixin _$LoginState {
   bool get isButtonLogInEnabled => throw _privateConstructorUsedError;
   bool get isButtonRecoveryEnabled => throw _privateConstructorUsedError;
   String get loginError => throw _privateConstructorUsedError;
-  Map<String, Field> get textFields => throw _privateConstructorUsedError;
+  List<Field> get textFields => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LoginStateCopyWith<LoginState> get copyWith =>
@@ -36,7 +36,7 @@ abstract class $LoginStateCopyWith<$Res> {
       {bool isButtonLogInEnabled,
       bool isButtonRecoveryEnabled,
       String loginError,
-      Map<String, Field> textFields});
+      List<Field> textFields});
 }
 
 /// @nodoc
@@ -73,7 +73,7 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
       textFields: null == textFields
           ? _value.textFields
           : textFields // ignore: cast_nullable_to_non_nullable
-              as Map<String, Field>,
+              as List<Field>,
     ) as $Val);
   }
 }
@@ -90,7 +90,7 @@ abstract class _$$LoginStateImplCopyWith<$Res>
       {bool isButtonLogInEnabled,
       bool isButtonRecoveryEnabled,
       String loginError,
-      Map<String, Field> textFields});
+      List<Field> textFields});
 }
 
 /// @nodoc
@@ -125,7 +125,7 @@ class __$$LoginStateImplCopyWithImpl<$Res>
       textFields: null == textFields
           ? _value._textFields
           : textFields // ignore: cast_nullable_to_non_nullable
-              as Map<String, Field>,
+              as List<Field>,
     ));
   }
 }
@@ -137,7 +137,7 @@ class _$LoginStateImpl implements _LoginState {
       {this.isButtonLogInEnabled = false,
       this.isButtonRecoveryEnabled = false,
       this.loginError = LogicStrings.init,
-      final Map<String, Field> textFields = const {}})
+      final List<Field> textFields = const []})
       : _textFields = textFields;
 
   @override
@@ -149,13 +149,13 @@ class _$LoginStateImpl implements _LoginState {
   @override
   @JsonKey()
   final String loginError;
-  final Map<String, Field> _textFields;
+  final List<Field> _textFields;
   @override
   @JsonKey()
-  Map<String, Field> get textFields {
-    if (_textFields is EqualUnmodifiableMapView) return _textFields;
+  List<Field> get textFields {
+    if (_textFields is EqualUnmodifiableListView) return _textFields;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_textFields);
+    return EqualUnmodifiableListView(_textFields);
   }
 
   @override
@@ -199,7 +199,7 @@ abstract class _LoginState implements LoginState {
       {final bool isButtonLogInEnabled,
       final bool isButtonRecoveryEnabled,
       final String loginError,
-      final Map<String, Field> textFields}) = _$LoginStateImpl;
+      final List<Field> textFields}) = _$LoginStateImpl;
 
   @override
   bool get isButtonLogInEnabled;
@@ -208,7 +208,7 @@ abstract class _LoginState implements LoginState {
   @override
   String get loginError;
   @override
-  Map<String, Field> get textFields;
+  List<Field> get textFields;
   @override
   @JsonKey(ignore: true)
   _$$LoginStateImplCopyWith<_$LoginStateImpl> get copyWith =>

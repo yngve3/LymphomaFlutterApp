@@ -17,12 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ConfirmRequestState {
   String get id => throw _privateConstructorUsedError;
-  String get fullName => throw _privateConstructorUsedError;
-  String get phone => throw _privateConstructorUsedError;
-  String get familyPhone => throw _privateConstructorUsedError;
   DateTime? get birthdate => throw _privateConstructorUsedError;
-  dynamic get therapist => throw _privateConstructorUsedError;
-  Map<String, Field> get inputFields => throw _privateConstructorUsedError;
+  List<Field> get fields => throw _privateConstructorUsedError;
   bool get isButtonAcceptEnabled => throw _privateConstructorUsedError;
   LoadingState get loadingState => throw _privateConstructorUsedError;
 
@@ -39,12 +35,8 @@ abstract class $ConfirmRequestStateCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String fullName,
-      String phone,
-      String familyPhone,
       DateTime? birthdate,
-      dynamic therapist,
-      Map<String, Field> inputFields,
+      List<Field> fields,
       bool isButtonAcceptEnabled,
       LoadingState loadingState});
 }
@@ -63,12 +55,8 @@ class _$ConfirmRequestStateCopyWithImpl<$Res, $Val extends ConfirmRequestState>
   @override
   $Res call({
     Object? id = null,
-    Object? fullName = null,
-    Object? phone = null,
-    Object? familyPhone = null,
     Object? birthdate = freezed,
-    Object? therapist = freezed,
-    Object? inputFields = null,
+    Object? fields = null,
     Object? isButtonAcceptEnabled = null,
     Object? loadingState = null,
   }) {
@@ -77,30 +65,14 @@ class _$ConfirmRequestStateCopyWithImpl<$Res, $Val extends ConfirmRequestState>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      fullName: null == fullName
-          ? _value.fullName
-          : fullName // ignore: cast_nullable_to_non_nullable
-              as String,
-      phone: null == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      familyPhone: null == familyPhone
-          ? _value.familyPhone
-          : familyPhone // ignore: cast_nullable_to_non_nullable
-              as String,
       birthdate: freezed == birthdate
           ? _value.birthdate
           : birthdate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      therapist: freezed == therapist
-          ? _value.therapist
-          : therapist // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      inputFields: null == inputFields
-          ? _value.inputFields
-          : inputFields // ignore: cast_nullable_to_non_nullable
-              as Map<String, Field>,
+      fields: null == fields
+          ? _value.fields
+          : fields // ignore: cast_nullable_to_non_nullable
+              as List<Field>,
       isButtonAcceptEnabled: null == isButtonAcceptEnabled
           ? _value.isButtonAcceptEnabled
           : isButtonAcceptEnabled // ignore: cast_nullable_to_non_nullable
@@ -123,12 +95,8 @@ abstract class _$$ConfirmRequestStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
-      String fullName,
-      String phone,
-      String familyPhone,
       DateTime? birthdate,
-      dynamic therapist,
-      Map<String, Field> inputFields,
+      List<Field> fields,
       bool isButtonAcceptEnabled,
       LoadingState loadingState});
 }
@@ -145,12 +113,8 @@ class __$$ConfirmRequestStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? fullName = null,
-    Object? phone = null,
-    Object? familyPhone = null,
     Object? birthdate = freezed,
-    Object? therapist = freezed,
-    Object? inputFields = null,
+    Object? fields = null,
     Object? isButtonAcceptEnabled = null,
     Object? loadingState = null,
   }) {
@@ -159,27 +123,14 @@ class __$$ConfirmRequestStateImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      fullName: null == fullName
-          ? _value.fullName
-          : fullName // ignore: cast_nullable_to_non_nullable
-              as String,
-      phone: null == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      familyPhone: null == familyPhone
-          ? _value.familyPhone
-          : familyPhone // ignore: cast_nullable_to_non_nullable
-              as String,
       birthdate: freezed == birthdate
           ? _value.birthdate
           : birthdate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      therapist: freezed == therapist ? _value.therapist! : therapist,
-      inputFields: null == inputFields
-          ? _value._inputFields
-          : inputFields // ignore: cast_nullable_to_non_nullable
-              as Map<String, Field>,
+      fields: null == fields
+          ? _value._fields
+          : fields // ignore: cast_nullable_to_non_nullable
+              as List<Field>,
       isButtonAcceptEnabled: null == isButtonAcceptEnabled
           ? _value.isButtonAcceptEnabled
           : isButtonAcceptEnabled // ignore: cast_nullable_to_non_nullable
@@ -197,40 +148,24 @@ class __$$ConfirmRequestStateImplCopyWithImpl<$Res>
 class _$ConfirmRequestStateImpl implements _ConfirmRequestState {
   const _$ConfirmRequestStateImpl(
       {this.id = "",
-      this.fullName = "",
-      this.phone = "",
-      this.familyPhone = "",
       this.birthdate,
-      this.therapist = "",
-      final Map<String, Field> inputFields = const {},
+      final List<Field> fields = const [],
       this.isButtonAcceptEnabled = false,
       this.loadingState = LoadingState.ok})
-      : _inputFields = inputFields;
+      : _fields = fields;
 
   @override
   @JsonKey()
   final String id;
   @override
-  @JsonKey()
-  final String fullName;
-  @override
-  @JsonKey()
-  final String phone;
-  @override
-  @JsonKey()
-  final String familyPhone;
-  @override
   final DateTime? birthdate;
+  final List<Field> _fields;
   @override
   @JsonKey()
-  final dynamic therapist;
-  final Map<String, Field> _inputFields;
-  @override
-  @JsonKey()
-  Map<String, Field> get inputFields {
-    if (_inputFields is EqualUnmodifiableMapView) return _inputFields;
+  List<Field> get fields {
+    if (_fields is EqualUnmodifiableListView) return _fields;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_inputFields);
+    return EqualUnmodifiableListView(_fields);
   }
 
   @override
@@ -242,7 +177,7 @@ class _$ConfirmRequestStateImpl implements _ConfirmRequestState {
 
   @override
   String toString() {
-    return 'ConfirmRequestState(id: $id, fullName: $fullName, phone: $phone, familyPhone: $familyPhone, birthdate: $birthdate, therapist: $therapist, inputFields: $inputFields, isButtonAcceptEnabled: $isButtonAcceptEnabled, loadingState: $loadingState)';
+    return 'ConfirmRequestState(id: $id, birthdate: $birthdate, fields: $fields, isButtonAcceptEnabled: $isButtonAcceptEnabled, loadingState: $loadingState)';
   }
 
   @override
@@ -251,16 +186,9 @@ class _$ConfirmRequestStateImpl implements _ConfirmRequestState {
         (other.runtimeType == runtimeType &&
             other is _$ConfirmRequestStateImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.fullName, fullName) ||
-                other.fullName == fullName) &&
-            (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.familyPhone, familyPhone) ||
-                other.familyPhone == familyPhone) &&
             (identical(other.birthdate, birthdate) ||
                 other.birthdate == birthdate) &&
-            const DeepCollectionEquality().equals(other.therapist, therapist) &&
-            const DeepCollectionEquality()
-                .equals(other._inputFields, _inputFields) &&
+            const DeepCollectionEquality().equals(other._fields, _fields) &&
             (identical(other.isButtonAcceptEnabled, isButtonAcceptEnabled) ||
                 other.isButtonAcceptEnabled == isButtonAcceptEnabled) &&
             (identical(other.loadingState, loadingState) ||
@@ -271,12 +199,8 @@ class _$ConfirmRequestStateImpl implements _ConfirmRequestState {
   int get hashCode => Object.hash(
       runtimeType,
       id,
-      fullName,
-      phone,
-      familyPhone,
       birthdate,
-      const DeepCollectionEquality().hash(therapist),
-      const DeepCollectionEquality().hash(_inputFields),
+      const DeepCollectionEquality().hash(_fields),
       isButtonAcceptEnabled,
       loadingState);
 
@@ -291,29 +215,17 @@ class _$ConfirmRequestStateImpl implements _ConfirmRequestState {
 abstract class _ConfirmRequestState implements ConfirmRequestState {
   const factory _ConfirmRequestState(
       {final String id,
-      final String fullName,
-      final String phone,
-      final String familyPhone,
       final DateTime? birthdate,
-      final dynamic therapist,
-      final Map<String, Field> inputFields,
+      final List<Field> fields,
       final bool isButtonAcceptEnabled,
       final LoadingState loadingState}) = _$ConfirmRequestStateImpl;
 
   @override
   String get id;
   @override
-  String get fullName;
-  @override
-  String get phone;
-  @override
-  String get familyPhone;
-  @override
   DateTime? get birthdate;
   @override
-  dynamic get therapist;
-  @override
-  Map<String, Field> get inputFields;
+  List<Field> get fields;
   @override
   bool get isButtonAcceptEnabled;
   @override

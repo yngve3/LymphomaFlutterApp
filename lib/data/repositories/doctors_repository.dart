@@ -21,6 +21,13 @@ class DoctorsRepository {
     return Doctor.fromJson(result[0], imageURL: imageURL);
   }
 
+  void addPatient(String patientID, String doctorID) async {
+    await Supabase.instance.client.from("jt_patients_doctors").insert({
+      TableFieldNames.patientID: patientID,
+      TableFieldNames.doctorID: doctorID,
+    });
+  }
+
   Future<String?> getAvatarURL(String id) async {
     final list = await Supabase.instance.client.storage.from('avatars').list(path: id);
     if (list.isEmpty) return null;
@@ -38,6 +45,12 @@ class DoctorsRepository {
       )
     );
 
-    return getAvatarURL(id);
+    final imageURL = getAvatarURL(id);
+
+    Supabase.instance.client.from(TableNames.doctors).update({
+      {TableFieldNames.imageURL}: imageURL
+    });
+
+    return imageURL;
   }
 }

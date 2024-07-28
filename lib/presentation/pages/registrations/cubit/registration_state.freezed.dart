@@ -16,10 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$RegistrationState {
-  DateTime? get birthdate => throw _privateConstructorUsedError;
   bool get isContinueButtonEnabled => throw _privateConstructorUsedError;
   bool get isSendRequestButtonEnabled => throw _privateConstructorUsedError;
-  Map<String, Field> get textFields => throw _privateConstructorUsedError;
+  List<Field> get fields => throw _privateConstructorUsedError;
   String get registerError => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -34,10 +33,9 @@ abstract class $RegistrationStateCopyWith<$Res> {
       _$RegistrationStateCopyWithImpl<$Res, RegistrationState>;
   @useResult
   $Res call(
-      {DateTime? birthdate,
-      bool isContinueButtonEnabled,
+      {bool isContinueButtonEnabled,
       bool isSendRequestButtonEnabled,
-      Map<String, Field> textFields,
+      List<Field> fields,
       String registerError});
 }
 
@@ -54,17 +52,12 @@ class _$RegistrationStateCopyWithImpl<$Res, $Val extends RegistrationState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? birthdate = freezed,
     Object? isContinueButtonEnabled = null,
     Object? isSendRequestButtonEnabled = null,
-    Object? textFields = null,
+    Object? fields = null,
     Object? registerError = null,
   }) {
     return _then(_value.copyWith(
-      birthdate: freezed == birthdate
-          ? _value.birthdate
-          : birthdate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
       isContinueButtonEnabled: null == isContinueButtonEnabled
           ? _value.isContinueButtonEnabled
           : isContinueButtonEnabled // ignore: cast_nullable_to_non_nullable
@@ -73,10 +66,10 @@ class _$RegistrationStateCopyWithImpl<$Res, $Val extends RegistrationState>
           ? _value.isSendRequestButtonEnabled
           : isSendRequestButtonEnabled // ignore: cast_nullable_to_non_nullable
               as bool,
-      textFields: null == textFields
-          ? _value.textFields
-          : textFields // ignore: cast_nullable_to_non_nullable
-              as Map<String, Field>,
+      fields: null == fields
+          ? _value.fields
+          : fields // ignore: cast_nullable_to_non_nullable
+              as List<Field>,
       registerError: null == registerError
           ? _value.registerError
           : registerError // ignore: cast_nullable_to_non_nullable
@@ -94,10 +87,9 @@ abstract class _$$RegistrationStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {DateTime? birthdate,
-      bool isContinueButtonEnabled,
+      {bool isContinueButtonEnabled,
       bool isSendRequestButtonEnabled,
-      Map<String, Field> textFields,
+      List<Field> fields,
       String registerError});
 }
 
@@ -112,17 +104,12 @@ class __$$RegistrationStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? birthdate = freezed,
     Object? isContinueButtonEnabled = null,
     Object? isSendRequestButtonEnabled = null,
-    Object? textFields = null,
+    Object? fields = null,
     Object? registerError = null,
   }) {
     return _then(_$RegistrationStateImpl(
-      birthdate: freezed == birthdate
-          ? _value.birthdate
-          : birthdate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
       isContinueButtonEnabled: null == isContinueButtonEnabled
           ? _value.isContinueButtonEnabled
           : isContinueButtonEnabled // ignore: cast_nullable_to_non_nullable
@@ -131,10 +118,10 @@ class __$$RegistrationStateImplCopyWithImpl<$Res>
           ? _value.isSendRequestButtonEnabled
           : isSendRequestButtonEnabled // ignore: cast_nullable_to_non_nullable
               as bool,
-      textFields: null == textFields
-          ? _value._textFields
-          : textFields // ignore: cast_nullable_to_non_nullable
-              as Map<String, Field>,
+      fields: null == fields
+          ? _value._fields
+          : fields // ignore: cast_nullable_to_non_nullable
+              as List<Field>,
       registerError: null == registerError
           ? _value.registerError
           : registerError // ignore: cast_nullable_to_non_nullable
@@ -147,28 +134,24 @@ class __$$RegistrationStateImplCopyWithImpl<$Res>
 
 class _$RegistrationStateImpl implements _RegistrationState {
   const _$RegistrationStateImpl(
-      {this.birthdate,
-      this.isContinueButtonEnabled = false,
+      {this.isContinueButtonEnabled = false,
       this.isSendRequestButtonEnabled = false,
-      final Map<String, Field> textFields = const {},
+      required final List<Field> fields,
       this.registerError = LogicStrings.init})
-      : _textFields = textFields;
+      : _fields = fields;
 
-  @override
-  final DateTime? birthdate;
   @override
   @JsonKey()
   final bool isContinueButtonEnabled;
   @override
   @JsonKey()
   final bool isSendRequestButtonEnabled;
-  final Map<String, Field> _textFields;
+  final List<Field> _fields;
   @override
-  @JsonKey()
-  Map<String, Field> get textFields {
-    if (_textFields is EqualUnmodifiableMapView) return _textFields;
+  List<Field> get fields {
+    if (_fields is EqualUnmodifiableListView) return _fields;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_textFields);
+    return EqualUnmodifiableListView(_fields);
   }
 
   @override
@@ -177,7 +160,7 @@ class _$RegistrationStateImpl implements _RegistrationState {
 
   @override
   String toString() {
-    return 'RegistrationState(birthdate: $birthdate, isContinueButtonEnabled: $isContinueButtonEnabled, isSendRequestButtonEnabled: $isSendRequestButtonEnabled, textFields: $textFields, registerError: $registerError)';
+    return 'RegistrationState(isContinueButtonEnabled: $isContinueButtonEnabled, isSendRequestButtonEnabled: $isSendRequestButtonEnabled, fields: $fields, registerError: $registerError)';
   }
 
   @override
@@ -185,8 +168,6 @@ class _$RegistrationStateImpl implements _RegistrationState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RegistrationStateImpl &&
-            (identical(other.birthdate, birthdate) ||
-                other.birthdate == birthdate) &&
             (identical(
                     other.isContinueButtonEnabled, isContinueButtonEnabled) ||
                 other.isContinueButtonEnabled == isContinueButtonEnabled) &&
@@ -194,8 +175,7 @@ class _$RegistrationStateImpl implements _RegistrationState {
                     isSendRequestButtonEnabled) ||
                 other.isSendRequestButtonEnabled ==
                     isSendRequestButtonEnabled) &&
-            const DeepCollectionEquality()
-                .equals(other._textFields, _textFields) &&
+            const DeepCollectionEquality().equals(other._fields, _fields) &&
             (identical(other.registerError, registerError) ||
                 other.registerError == registerError));
   }
@@ -203,10 +183,9 @@ class _$RegistrationStateImpl implements _RegistrationState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      birthdate,
       isContinueButtonEnabled,
       isSendRequestButtonEnabled,
-      const DeepCollectionEquality().hash(_textFields),
+      const DeepCollectionEquality().hash(_fields),
       registerError);
 
   @JsonKey(ignore: true)
@@ -219,20 +198,17 @@ class _$RegistrationStateImpl implements _RegistrationState {
 
 abstract class _RegistrationState implements RegistrationState {
   const factory _RegistrationState(
-      {final DateTime? birthdate,
-      final bool isContinueButtonEnabled,
+      {final bool isContinueButtonEnabled,
       final bool isSendRequestButtonEnabled,
-      final Map<String, Field> textFields,
+      required final List<Field> fields,
       final String registerError}) = _$RegistrationStateImpl;
 
-  @override
-  DateTime? get birthdate;
   @override
   bool get isContinueButtonEnabled;
   @override
   bool get isSendRequestButtonEnabled;
   @override
-  Map<String, Field> get textFields;
+  List<Field> get fields;
   @override
   String get registerError;
   @override

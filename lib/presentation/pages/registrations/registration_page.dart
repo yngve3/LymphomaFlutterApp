@@ -10,8 +10,7 @@ import '../../../consts/strings.dart';
 import '../../../di/dependencies.dart';
 import '../../routing/routes.dart';
 import '../../widgets/app_bar/back_arrow.dart';
-import '../../widgets/enter_date_field.dart';
-import '../../widgets/input_field.dart';
+import '../../widgets/field_list.dart';
 import '../../widgets/screen.dart';
 import 'cubit/registration_state.dart';
 
@@ -82,10 +81,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   controller: _pageViewController,
                   count: 2,
                   effect: WormEffect(
-                      dotColor: context.colors.primary.withOpacity(0.3),
-                      activeDotColor: context.colors.primary,
-                      dotHeight: 8,
-                      dotWidth: 8
+                    dotColor: context.colors.primary.withOpacity(0.3),
+                    activeDotColor: context.colors.primary,
+                    dotHeight: 8,
+                    dotWidth: 8,
                   ),
                 ),
               )
@@ -134,30 +133,9 @@ class RegistrationFirstPage extends StatelessWidget {
         return ScrollableScreen(
           child: Column(
             children: [
-              InputField(
-                label: AppStrings.email,
-                hint: AppStrings.enterEmail,
-                textInputAction: TextInputAction.next,
-                textInputType: TextInputType.emailAddress,
-                onChanged: (value) => cubit.onFieldChanged(FieldNames.email, value),
-                field: state.textFields[FieldNames.email],
-              ),
-              const SizedBox(height: 16),
-              InputField(
-                label: AppStrings.password,
-                hint: AppStrings.enterPassword,
-                textInputAction: TextInputAction.next,
-                isPassword: true,
-                onChanged: (value) => cubit.onFieldChanged(FieldNames.password, value),
-                field: state.textFields[FieldNames.password],
-              ),
-              const SizedBox(height: 16),
-              InputField(
-                label: AppStrings.repeatPassword,
-                hint: AppStrings.repeatPassword,
-                isPassword: true,
-                onChanged: (value) => cubit.onFieldChanged(FieldNames.repeatedPassword, value),
-                field: state.textFields[FieldNames.repeatedPassword],
+              FieldList(
+                fields: state.fields.take(3).toList(),
+                onChanged: cubit.onFieldChanged,
               ),
               const SizedBox(height: 40),
               FilledButton(
@@ -187,37 +165,10 @@ class RegistrationSecondPage extends StatelessWidget {
       builder: (context, state) {
         return ScrollableScreen(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              InputField(
-                label: AppStrings.fullName,
-                hint: AppStrings.enterFullName,
-                textInputAction: TextInputAction.next,
-                onChanged: (value) => cubit.onFieldChanged(FieldNames.fullName, value),
-                field: state.textFields[FieldNames.fullName],
-              ),
-              const SizedBox(height: 16),
-              EnterDateField(
-                dateTime: state.birthdate,
-                onDateChosen: context.read<RegistrationCubit>().onBirthdateChanged,
-              ),
-              const SizedBox(height: 16),
-              InputField(
-                label: AppStrings.phoneNumber,
-                hint: AppStrings.enterPhoneNumber,
-                textInputAction: TextInputAction.next,
-                textInputType: TextInputType.phone,
-                onChanged: (value) => cubit.onFieldChanged(FieldNames.phoneNumber, value),
-                field: state.textFields[FieldNames.phoneNumber],
-              ),
-              const SizedBox(height: 16),
-              InputField(
-                label: AppStrings.familyPhoneNumber,
-                hint: AppStrings.enterFamilyPhoneNumber,
-                textInputAction: TextInputAction.next,
-                textInputType: TextInputType.phone,
-                onChanged: (value) => cubit.onFieldChanged(FieldNames.familyPhoneNumber, value),
-                field: state.textFields[FieldNames.familyPhoneNumber],
+              FieldList(
+                fields: state.fields.skip(3).toList(),
+                onChanged: cubit.onFieldChanged,
               ),
               const SizedBox(height: 40),
               FilledButton(
@@ -227,7 +178,7 @@ class RegistrationSecondPage extends StatelessWidget {
                 child: const Text(AppStrings.sendRequest),
               )
             ],
-          ),
+          )
         );
       },
     );

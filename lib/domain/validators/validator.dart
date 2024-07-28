@@ -4,7 +4,7 @@ import 'package:lymphoma/domain/validators/full_name_validator.dart';
 import 'package:lymphoma/domain/validators/password_validator.dart';
 import 'package:lymphoma/domain/validators/phone_validator.dart';
 
-import '../../consts/strings.dart';
+import '../models/field/field.dart';
 
 abstract class Validator {
   bool validate(String value);
@@ -15,19 +15,23 @@ class ValidatorApplier {
 
   const ValidatorApplier(this._factory);
 
-  bool validate(String fieldName, String value) {
-    final validator = _factory.createValidator(fieldName);
-    return validator.validate(value);
+  bool validate(Field field, dynamic value) {
+    final validator = _factory.createValidator(field);
+    if (value is String) {
+      return validator.validate(value);
+    } else {
+      return true;
+    }
   }
 }
 
 class ValidatorFactory {
-  Validator createValidator(String fieldName) =>
-      switch(fieldName) {
-        FieldNames.fullName => FullNameValidator(),
-        FieldNames.email => EmailValidator(),
-        FieldNames.password || FieldNames.repeatedPassword => PasswordValidator(),
-        FieldNames.phoneNumber || FieldNames.familyPhoneNumber => PhoneValidator(),
+  Validator createValidator(Field field) =>
+      switch(field.type) {
+        FieldType.fullName => FullNameValidator(),
+        FieldType.email => EmailValidator(),
+        FieldType.password => PasswordValidator(),
+        FieldType.phone => PhoneValidator(),
         _ => EmptyValidator()
       };
 }

@@ -13,6 +13,8 @@ class MainDoctorPageCubit extends Cubit<MainDoctorPageState> {
   @postConstruct
   void loadPatients() async {
     final patients = await _interactor.allPatients;
-    emit(state.copyWith(allPatients: patients));
+    final doctor = await _interactor.currentDoctor;
+    final favoritePatients = patients.where((patient) => patient.doctor.id == doctor.id).toList();
+    emit(state.copyWith(allPatients: patients.toSet().difference(favoritePatients.toSet()).toList(), favoritePatients: favoritePatients));
   }
 }

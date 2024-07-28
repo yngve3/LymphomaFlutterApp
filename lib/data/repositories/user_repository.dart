@@ -7,5 +7,5 @@ import '../../consts/strings.dart';
 class UserRepository {
   bool get isLoginIn => Supabase.instance.client.auth.currentUser != null;
   String? get id => Supabase.instance.client.auth.currentUser?.id;
-  String? get role => Supabase.instance.client.auth.currentUser?.userMetadata?[FieldNames.userRole];
+  String? get role => Supabase.instance.client.auth.currentUser?.userMetadata?[TableFieldNames.role];
 }
