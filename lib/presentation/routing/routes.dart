@@ -6,11 +6,11 @@ abstract class Routes {
   static SimpleRoute registrationStatus = const SimpleRoute("/registrationStatus");
 
   static SimpleRoute doctorMain = const SimpleRoute("/doctor");
-  static SimpleRoute patientInfo = const SimpleRoute("/doctor/patient");
-  static SimpleRoute patientHistory = const SimpleRoute("/doctor/patient/history");
-  static SimpleRoute patientProfileByDoctor = const SimpleRoute("/doctor/patient/profile");
-  static SimpleRoute newAppointment = const SimpleRoute("/doctor/patient/new_appointment");
-  static SimpleRoute newAppointmentStatus = const SimpleRoute("/doctor/patient/new_appointment/status");
+  static RouteWithParameters patientInfo = RouteWithParameters("/doctor/:patient_id");
+  static RouteWithParameters patientHistory = RouteWithParameters("/doctor/:patient_id/history");
+  static RouteWithParameters patientProfileByDoctor = RouteWithParameters("/doctor/:patient_id/profile");
+  static RouteWithParameters newAppointment = RouteWithParameters("/doctor/:patient_id/new_appointment");
+  static RouteWithParameters newAppointmentStatus = RouteWithParameters("/doctor/:patient_id/new_appointment/status");
   static SimpleRoute doctorProfile = const SimpleRoute("/doctor/profile");
   static SimpleRoute doctorNotifications = const SimpleRoute("/doctor/notifications");
   static SimpleRoute doctorNotificationsRequests = const SimpleRoute("/doctor/notifications/requests");

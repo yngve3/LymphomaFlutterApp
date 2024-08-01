@@ -3,6 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../consts/strings.dart';
 import '../../domain/models/appointment.dart';
+import '../../presentation/pages/new_appointment/cubit/new_appointment_state.dart';
 
 @injectable
 class AppointmentsRepository {
@@ -30,11 +31,21 @@ class AppointmentsRepository {
     return Appointment.fromJSON(result[result.length - 1]);
   }
 
-  void createAppointment(DateTime dateTime, String patientID, String doctorID) async {
+  void createAppointment({
+    required DateTime dateTime,
+    required String patientID,
+    required String doctorID,
+    DoctorType? type,
+    String? room,
+    bool isDispensary = false
+  }) async {
     await Supabase.instance.client.from(TableNames.appointments).insert({
       TableFieldNames.patientID: patientID,
       TableFieldNames.doctorID: doctorID,
-      TableFieldNames.dateTime: dateTime.toUtc().toIso8601String()
+      TableFieldNames.dateTime: dateTime.toUtc().toIso8601String(),
+      TableFieldNames.isDispensary: isDispensary,
+      TableFieldNames.dispensaryDoctorRoom: room,
+      TableFieldNames.dispensaryDoctorType: DoctorType.getDoctorTypeName(type),
     });
   }
 
@@ -43,7 +54,7 @@ class AppointmentsRepository {
       ${TableFieldNames.id},
       ${TableFieldNames.dateTime},
       ${TableNames.doctors} ( * ),
-      ${TableNames.patients} ( * )
+      ${TableNames.patients} ( *, ${TableNames.jtPatientsDoctors} ( ${TableNames.doctors} ( * ) ) )
     ''';
   }
 }

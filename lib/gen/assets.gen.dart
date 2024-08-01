@@ -3,17 +3,20 @@
 ///  FlutterGen
 /// *****************************************************
 
-import 'package:flutter/services.dart';
 // coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
 
 import 'package:flutter/widgets.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vector_graphics/vector_graphics.dart';
 
 class $AssetsIconsGen {
   const $AssetsIconsGen();
+
+  /// File path: assets/icons/ic_add.svg
+  SvgGenImage get icAdd => const SvgGenImage('assets/icons/ic_add.svg');
 
   /// File path: assets/icons/ic_add_user.svg
   SvgGenImage get icAddUser =>
@@ -46,6 +49,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_image.svg
   SvgGenImage get icImage => const SvgGenImage('assets/icons/ic_image.svg');
 
+  /// File path: assets/icons/ic_logout.svg
+  SvgGenImage get icLogout => const SvgGenImage('assets/icons/ic_logout.svg');
+
   /// File path: assets/icons/ic_not_ok.svg
   SvgGenImage get icNotOk => const SvgGenImage('assets/icons/ic_not_ok.svg');
 
@@ -75,6 +81,7 @@ class $AssetsIconsGen {
 
   /// List of all assets
   List<SvgGenImage> get values => [
+        icAdd,
         icAddUser,
         icArrowLeft,
         icArrowRight,
@@ -84,6 +91,7 @@ class $AssetsIconsGen {
         icDna,
         icHide,
         icImage,
+        icLogout,
         icNotOk,
         icNotifications,
         icOk,

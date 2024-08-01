@@ -21,4 +21,9 @@ extension DateHelpers on DateTime {
         yesterday.month == month &&
         yesterday.year == year;
   }
+
+  bool get isThisWeek {
+    final sevenDaysLater = DateTime.now().add(const Duration(days: 7));
+    return isAfter(DateTime.now()) && isBefore(sevenDaysLater);
+  }
 }

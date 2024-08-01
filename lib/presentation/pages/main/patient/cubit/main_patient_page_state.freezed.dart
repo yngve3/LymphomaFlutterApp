@@ -17,8 +17,10 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$MainPatientPageState {
   Appointment get comingAppointment => throw _privateConstructorUsedError;
+  Patient? get patient => throw _privateConstructorUsedError;
   LoadingState get comingAppointmentLoadingState =>
       throw _privateConstructorUsedError;
+  LoadingState get patientLoadingState => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MainPatientPageStateCopyWith<MainPatientPageState> get copyWith =>
@@ -33,7 +35,9 @@ abstract class $MainPatientPageStateCopyWith<$Res> {
   @useResult
   $Res call(
       {Appointment comingAppointment,
-      LoadingState comingAppointmentLoadingState});
+      Patient? patient,
+      LoadingState comingAppointmentLoadingState,
+      LoadingState patientLoadingState});
 }
 
 /// @nodoc
@@ -51,16 +55,26 @@ class _$MainPatientPageStateCopyWithImpl<$Res,
   @override
   $Res call({
     Object? comingAppointment = null,
+    Object? patient = freezed,
     Object? comingAppointmentLoadingState = null,
+    Object? patientLoadingState = null,
   }) {
     return _then(_value.copyWith(
       comingAppointment: null == comingAppointment
           ? _value.comingAppointment
           : comingAppointment // ignore: cast_nullable_to_non_nullable
               as Appointment,
+      patient: freezed == patient
+          ? _value.patient
+          : patient // ignore: cast_nullable_to_non_nullable
+              as Patient?,
       comingAppointmentLoadingState: null == comingAppointmentLoadingState
           ? _value.comingAppointmentLoadingState
           : comingAppointmentLoadingState // ignore: cast_nullable_to_non_nullable
+              as LoadingState,
+      patientLoadingState: null == patientLoadingState
+          ? _value.patientLoadingState
+          : patientLoadingState // ignore: cast_nullable_to_non_nullable
               as LoadingState,
     ) as $Val);
   }
@@ -76,7 +90,9 @@ abstract class _$$MainPatientPageStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {Appointment comingAppointment,
-      LoadingState comingAppointmentLoadingState});
+      Patient? patient,
+      LoadingState comingAppointmentLoadingState,
+      LoadingState patientLoadingState});
 }
 
 /// @nodoc
@@ -91,16 +107,26 @@ class __$$MainPatientPageStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? comingAppointment = null,
+    Object? patient = freezed,
     Object? comingAppointmentLoadingState = null,
+    Object? patientLoadingState = null,
   }) {
     return _then(_$MainPatientPageStateImpl(
       comingAppointment: null == comingAppointment
           ? _value.comingAppointment
           : comingAppointment // ignore: cast_nullable_to_non_nullable
               as Appointment,
+      patient: freezed == patient
+          ? _value.patient
+          : patient // ignore: cast_nullable_to_non_nullable
+              as Patient?,
       comingAppointmentLoadingState: null == comingAppointmentLoadingState
           ? _value.comingAppointmentLoadingState
           : comingAppointmentLoadingState // ignore: cast_nullable_to_non_nullable
+              as LoadingState,
+      patientLoadingState: null == patientLoadingState
+          ? _value.patientLoadingState
+          : patientLoadingState // ignore: cast_nullable_to_non_nullable
               as LoadingState,
     ));
   }
@@ -111,17 +137,24 @@ class __$$MainPatientPageStateImplCopyWithImpl<$Res>
 class _$MainPatientPageStateImpl implements _MainPatientPageState {
   const _$MainPatientPageStateImpl(
       {required this.comingAppointment,
-      this.comingAppointmentLoadingState = LoadingState.ok});
+      this.patient,
+      this.comingAppointmentLoadingState = LoadingState.ok,
+      this.patientLoadingState = LoadingState.ok});
 
   @override
   final Appointment comingAppointment;
   @override
+  final Patient? patient;
+  @override
   @JsonKey()
   final LoadingState comingAppointmentLoadingState;
+  @override
+  @JsonKey()
+  final LoadingState patientLoadingState;
 
   @override
   String toString() {
-    return 'MainPatientPageState(comingAppointment: $comingAppointment, comingAppointmentLoadingState: $comingAppointmentLoadingState)';
+    return 'MainPatientPageState(comingAppointment: $comingAppointment, patient: $patient, comingAppointmentLoadingState: $comingAppointmentLoadingState, patientLoadingState: $patientLoadingState)';
   }
 
   @override
@@ -131,15 +164,18 @@ class _$MainPatientPageStateImpl implements _MainPatientPageState {
             other is _$MainPatientPageStateImpl &&
             (identical(other.comingAppointment, comingAppointment) ||
                 other.comingAppointment == comingAppointment) &&
+            (identical(other.patient, patient) || other.patient == patient) &&
             (identical(other.comingAppointmentLoadingState,
                     comingAppointmentLoadingState) ||
                 other.comingAppointmentLoadingState ==
-                    comingAppointmentLoadingState));
+                    comingAppointmentLoadingState) &&
+            (identical(other.patientLoadingState, patientLoadingState) ||
+                other.patientLoadingState == patientLoadingState));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, comingAppointment, comingAppointmentLoadingState);
+  int get hashCode => Object.hash(runtimeType, comingAppointment, patient,
+      comingAppointmentLoadingState, patientLoadingState);
 
   @JsonKey(ignore: true)
   @override
@@ -152,14 +188,19 @@ class _$MainPatientPageStateImpl implements _MainPatientPageState {
 
 abstract class _MainPatientPageState implements MainPatientPageState {
   const factory _MainPatientPageState(
-          {required final Appointment comingAppointment,
-          final LoadingState comingAppointmentLoadingState}) =
-      _$MainPatientPageStateImpl;
+      {required final Appointment comingAppointment,
+      final Patient? patient,
+      final LoadingState comingAppointmentLoadingState,
+      final LoadingState patientLoadingState}) = _$MainPatientPageStateImpl;
 
   @override
   Appointment get comingAppointment;
   @override
+  Patient? get patient;
+  @override
   LoadingState get comingAppointmentLoadingState;
+  @override
+  LoadingState get patientLoadingState;
   @override
   @JsonKey(ignore: true)
   _$$MainPatientPageStateImplCopyWith<_$MainPatientPageStateImpl>

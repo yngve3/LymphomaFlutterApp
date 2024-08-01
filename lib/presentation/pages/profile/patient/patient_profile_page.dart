@@ -12,7 +12,6 @@ import 'package:lymphoma/presentation/widgets/titled_list.dart';
 import '../../../../consts/strings.dart';
 import '../../../../di/dependencies.dart';
 import '../../../../domain/models/field/field.dart';
-import '../../../../domain/models/patient/patient.dart';
 import '../../../widgets/screen.dart';
 import '../../../widgets/shimmer.dart';
 import 'cubit/patient_profile_state.dart';
@@ -20,22 +19,22 @@ import 'cubit/patient_profile_state.dart';
 class PatientProfilePage extends StatelessWidget {
   const PatientProfilePage({
     super.key,
-    this.patient
+    this.patientID
   });
 
-  final Patient? patient;
+  final String? patientID;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt.get<PatientProfileCubit>(param1: patient),
+      create: (context) => getIt.get<PatientProfileCubit>(param1: patientID),
       child: BlocBuilder<PatientProfileCubit, PatientProfileState>(
         builder: (context, state) {
           return Scaffold(
             appBar: AppAppBar(
               title: AppStrings.patientProfile,
               leading: const BackArrow(),
-              actions: patient == null ? const [
+              actions: patientID == null ? const [
                 LogoutAction()
               ] : null,
             ),

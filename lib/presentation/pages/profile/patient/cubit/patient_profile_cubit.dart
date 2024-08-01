@@ -14,7 +14,7 @@ class PatientProfileCubit extends Cubit<PatientProfileState> {
   PatientProfileCubit(
       this._patientsInteractor,
       this._fieldChanger,
-      @factoryParam this.transmittedPatient
+      @factoryParam this.transmittedPatientID
     ) : super(PatientProfileState(
     fields: _fieldChanger.generate([
       FieldLabels.fullName,
@@ -29,14 +29,14 @@ class PatientProfileCubit extends Cubit<PatientProfileState> {
     ])
   ));
 
-  final Patient? transmittedPatient;
+  final String? transmittedPatientID;
   final PatientsInteractor _patientsInteractor;
   final FieldChanger _fieldChanger;
 
   @postConstruct
   void loadPatient() async {
     emit(state.copyWith(loadingState: LoadingState.loading));
-    final patient = transmittedPatient ?? await _patientsInteractor.currentPatient;
+    final patient = await _patientsInteractor.getPatient(id: transmittedPatientID);
     final doctor = patient.doctor.isEmpty ? await _patientsInteractor.currentDoctor : patient.doctor;
     final fields = [
       Field(label: FieldLabels.fullName, text: patient.fullName),

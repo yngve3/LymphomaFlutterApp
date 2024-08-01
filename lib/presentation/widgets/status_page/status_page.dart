@@ -42,7 +42,6 @@ class StatusPage extends StatelessWidget {
             ),
           ),
           bottom ?? const SizedBox.shrink(),
-          const SizedBox(height: 30)
         ],
       ),
     );

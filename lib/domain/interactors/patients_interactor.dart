@@ -28,9 +28,13 @@ class PatientsInteractor {
 
   Future<List<Patient>> get allPatients => _patientsRepository.getAllPatients();
 
-  Future<Patient> getPatient(String id) => _patientsRepository.getPatient(id);
+  Future<Patient> getPatient({String? id}) => _patientsRepository.getPatient(id ?? _userRepository.id ?? "");
 
   void updateVerified(VerificationStatus status, String id) => _patientsRepository.updateVerified(status, id);
+
+  Future<Appointment> getComingAppointment({String? patientID}) async {
+    return await _appointmentsRepository.getComingAppointmentByPatient(patientID ?? _userRepository.id ?? "");
+  }
 
   void update(List<Field> fields, String id) {
     _patientsRepository.upsert(
@@ -39,15 +43,6 @@ class PatientsInteractor {
     );
 
     _doctorsRepository.addPatient(id, _userRepository.id ?? "");
-  }
-
-  Future<Appointment> getComingAppointment({Patient? patient}) async {
-    final patientID = patient?.id ?? _userRepository.id;
-    return await _appointmentsRepository.getComingAppointmentByPatient(patientID ?? "");
-  }
-
-  void addAppointment(List<Field> fields, String id) {
-
   }
 
   Future<Doctor> get currentDoctor => _doctorsRepository.getDoctor(_userRepository.id ?? "");

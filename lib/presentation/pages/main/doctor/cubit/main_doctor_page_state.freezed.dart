@@ -18,6 +18,10 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$MainDoctorPageState {
   List<Patient> get allPatients => throw _privateConstructorUsedError;
   List<Patient> get favoritePatients => throw _privateConstructorUsedError;
+  List<Appointment> get appointments => throw _privateConstructorUsedError;
+  LoadingState get appointmentsLoadingState =>
+      throw _privateConstructorUsedError;
+  LoadingState get patientsLoadingState => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MainDoctorPageStateCopyWith<MainDoctorPageState> get copyWith =>
@@ -30,7 +34,12 @@ abstract class $MainDoctorPageStateCopyWith<$Res> {
           MainDoctorPageState value, $Res Function(MainDoctorPageState) then) =
       _$MainDoctorPageStateCopyWithImpl<$Res, MainDoctorPageState>;
   @useResult
-  $Res call({List<Patient> allPatients, List<Patient> favoritePatients});
+  $Res call(
+      {List<Patient> allPatients,
+      List<Patient> favoritePatients,
+      List<Appointment> appointments,
+      LoadingState appointmentsLoadingState,
+      LoadingState patientsLoadingState});
 }
 
 /// @nodoc
@@ -48,6 +57,9 @@ class _$MainDoctorPageStateCopyWithImpl<$Res, $Val extends MainDoctorPageState>
   $Res call({
     Object? allPatients = null,
     Object? favoritePatients = null,
+    Object? appointments = null,
+    Object? appointmentsLoadingState = null,
+    Object? patientsLoadingState = null,
   }) {
     return _then(_value.copyWith(
       allPatients: null == allPatients
@@ -58,6 +70,18 @@ class _$MainDoctorPageStateCopyWithImpl<$Res, $Val extends MainDoctorPageState>
           ? _value.favoritePatients
           : favoritePatients // ignore: cast_nullable_to_non_nullable
               as List<Patient>,
+      appointments: null == appointments
+          ? _value.appointments
+          : appointments // ignore: cast_nullable_to_non_nullable
+              as List<Appointment>,
+      appointmentsLoadingState: null == appointmentsLoadingState
+          ? _value.appointmentsLoadingState
+          : appointmentsLoadingState // ignore: cast_nullable_to_non_nullable
+              as LoadingState,
+      patientsLoadingState: null == patientsLoadingState
+          ? _value.patientsLoadingState
+          : patientsLoadingState // ignore: cast_nullable_to_non_nullable
+              as LoadingState,
     ) as $Val);
   }
 }
@@ -70,7 +94,12 @@ abstract class _$$MainDoctorPageStateImplCopyWith<$Res>
       __$$MainDoctorPageStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Patient> allPatients, List<Patient> favoritePatients});
+  $Res call(
+      {List<Patient> allPatients,
+      List<Patient> favoritePatients,
+      List<Appointment> appointments,
+      LoadingState appointmentsLoadingState,
+      LoadingState patientsLoadingState});
 }
 
 /// @nodoc
@@ -86,6 +115,9 @@ class __$$MainDoctorPageStateImplCopyWithImpl<$Res>
   $Res call({
     Object? allPatients = null,
     Object? favoritePatients = null,
+    Object? appointments = null,
+    Object? appointmentsLoadingState = null,
+    Object? patientsLoadingState = null,
   }) {
     return _then(_$MainDoctorPageStateImpl(
       allPatients: null == allPatients
@@ -96,6 +128,18 @@ class __$$MainDoctorPageStateImplCopyWithImpl<$Res>
           ? _value._favoritePatients
           : favoritePatients // ignore: cast_nullable_to_non_nullable
               as List<Patient>,
+      appointments: null == appointments
+          ? _value._appointments
+          : appointments // ignore: cast_nullable_to_non_nullable
+              as List<Appointment>,
+      appointmentsLoadingState: null == appointmentsLoadingState
+          ? _value.appointmentsLoadingState
+          : appointmentsLoadingState // ignore: cast_nullable_to_non_nullable
+              as LoadingState,
+      patientsLoadingState: null == patientsLoadingState
+          ? _value.patientsLoadingState
+          : patientsLoadingState // ignore: cast_nullable_to_non_nullable
+              as LoadingState,
     ));
   }
 }
@@ -105,9 +149,13 @@ class __$$MainDoctorPageStateImplCopyWithImpl<$Res>
 class _$MainDoctorPageStateImpl implements _MainDoctorPageState {
   const _$MainDoctorPageStateImpl(
       {final List<Patient> allPatients = const [],
-      final List<Patient> favoritePatients = const []})
+      final List<Patient> favoritePatients = const [],
+      final List<Appointment> appointments = const [],
+      this.appointmentsLoadingState = LoadingState.ok,
+      this.patientsLoadingState = LoadingState.ok})
       : _allPatients = allPatients,
-        _favoritePatients = favoritePatients;
+        _favoritePatients = favoritePatients,
+        _appointments = appointments;
 
   final List<Patient> _allPatients;
   @override
@@ -128,9 +176,25 @@ class _$MainDoctorPageStateImpl implements _MainDoctorPageState {
     return EqualUnmodifiableListView(_favoritePatients);
   }
 
+  final List<Appointment> _appointments;
+  @override
+  @JsonKey()
+  List<Appointment> get appointments {
+    if (_appointments is EqualUnmodifiableListView) return _appointments;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_appointments);
+  }
+
+  @override
+  @JsonKey()
+  final LoadingState appointmentsLoadingState;
+  @override
+  @JsonKey()
+  final LoadingState patientsLoadingState;
+
   @override
   String toString() {
-    return 'MainDoctorPageState(allPatients: $allPatients, favoritePatients: $favoritePatients)';
+    return 'MainDoctorPageState(allPatients: $allPatients, favoritePatients: $favoritePatients, appointments: $appointments, appointmentsLoadingState: $appointmentsLoadingState, patientsLoadingState: $patientsLoadingState)';
   }
 
   @override
@@ -141,14 +205,24 @@ class _$MainDoctorPageStateImpl implements _MainDoctorPageState {
             const DeepCollectionEquality()
                 .equals(other._allPatients, _allPatients) &&
             const DeepCollectionEquality()
-                .equals(other._favoritePatients, _favoritePatients));
+                .equals(other._favoritePatients, _favoritePatients) &&
+            const DeepCollectionEquality()
+                .equals(other._appointments, _appointments) &&
+            (identical(
+                    other.appointmentsLoadingState, appointmentsLoadingState) ||
+                other.appointmentsLoadingState == appointmentsLoadingState) &&
+            (identical(other.patientsLoadingState, patientsLoadingState) ||
+                other.patientsLoadingState == patientsLoadingState));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_allPatients),
-      const DeepCollectionEquality().hash(_favoritePatients));
+      const DeepCollectionEquality().hash(_favoritePatients),
+      const DeepCollectionEquality().hash(_appointments),
+      appointmentsLoadingState,
+      patientsLoadingState);
 
   @JsonKey(ignore: true)
   @override
@@ -161,12 +235,21 @@ class _$MainDoctorPageStateImpl implements _MainDoctorPageState {
 abstract class _MainDoctorPageState implements MainDoctorPageState {
   const factory _MainDoctorPageState(
       {final List<Patient> allPatients,
-      final List<Patient> favoritePatients}) = _$MainDoctorPageStateImpl;
+      final List<Patient> favoritePatients,
+      final List<Appointment> appointments,
+      final LoadingState appointmentsLoadingState,
+      final LoadingState patientsLoadingState}) = _$MainDoctorPageStateImpl;
 
   @override
   List<Patient> get allPatients;
   @override
   List<Patient> get favoritePatients;
+  @override
+  List<Appointment> get appointments;
+  @override
+  LoadingState get appointmentsLoadingState;
+  @override
+  LoadingState get patientsLoadingState;
   @override
   @JsonKey(ignore: true)
   _$$MainDoctorPageStateImplCopyWith<_$MainDoctorPageStateImpl> get copyWith =>

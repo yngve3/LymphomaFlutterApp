@@ -144,6 +144,10 @@ abstract class TableFieldNames {
   static const treatment = "treatment";
   static const password = "password";
   static const email = "email";
+  static const dispensaryNumber = "dispensary_number";
+  static const dispensaryDoctorType = "dispensary_doctor_type";
+  static const dispensaryDoctorRoom = "dispensary_doctor_room";
+  static const isDispensary = "is_dispensary";
 }
 
 abstract class UserRoles {

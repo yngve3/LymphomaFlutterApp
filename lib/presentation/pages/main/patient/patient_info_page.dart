@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lymphoma/data/repositories/user_repository.dart';
 import 'package:lymphoma/ext/context_ext.dart';
 import 'package:lymphoma/presentation/widgets/app_bar/back_arrow.dart';
 
@@ -8,7 +9,6 @@ import '../../../../consts/dimens.dart';
 import '../../../../consts/strings.dart';
 import '../../../../domain/models/appointment.dart';
 import '../../../../domain/models/loading_state.dart';
-import '../../../../domain/models/patient/patient.dart';
 import '../../../../domain/utils/full_name_formatter.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../routing/routes.dart';
@@ -24,10 +24,10 @@ import 'cubit/main_patient_page_state.dart';
 class PatientInfoPage extends StatelessWidget {
   const PatientInfoPage({
     super.key,
-    required this.patient
+    required this.patientID
   });
 
-  final Patient? patient;
+  final String? patientID;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class PatientInfoPage extends StatelessWidget {
           cardColor: context.colors.tertiary,
         ),
         title: "Карта пациента",
-        onPressed: () => context.push(Routes.patientProfileByDoctor.path, extra: patient),
+        onPressed: () => context.push(Routes.patientProfileByDoctor.path({TableFieldNames.patientID: patientID})),
       ),
       PatientInfoAction(
         icon: AppIconButton(
@@ -47,7 +47,7 @@ class PatientInfoPage extends StatelessWidget {
           cardColor: context.colors.tertiary,
         ),
         title: "История",
-        onPressed: () => context.go(Routes.patientHistory.path, extra: patient),
+        onPressed: () => context.go(Routes.patientHistory.path({TableFieldNames.patientID: patientID})),
       ),
       PatientInfoAction(
         icon: AppIconButton(
@@ -79,7 +79,8 @@ class PatientInfoPage extends StatelessWidget {
         return Scaffold(
             appBar: AppAppBar(
               leading: const BackArrow(),
-              title: FullNameFormatter.toAbbr(patient?.fullName ?? ""),
+              title: FullNameFormatter.toAbbr(state.patient?.fullName ?? ""),
+              titleLoadingState: state.patientLoadingState,
             ),
             body: ScrollableScreen(
                 topPadding: 28,
@@ -99,7 +100,13 @@ class PatientInfoPage extends StatelessWidget {
                               side: BorderSide(color: context.colors.primary)
                           )
                       ),
-                      onPressed: () => context.go(Routes.newAppointment.path, extra: patient),
+                      onPressed: () {
+                        context.read<MainPatientPageCubit>().close();
+                        context.go(
+                            Routes.newAppointment.path({TableFieldNames.patientID: patientID}),
+                            extra: state.patient?.doctor.id == UserRepository().id
+                        );
+                      },
                       child: Text(
                           "Новая запись"
                       ),

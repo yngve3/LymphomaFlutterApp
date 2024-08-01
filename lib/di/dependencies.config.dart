@@ -16,32 +16,32 @@ import 'package:lymphoma/data/repositories/doctors_repository.dart' as _i5;
 import 'package:lymphoma/data/repositories/patients_repository.dart' as _i6;
 import 'package:lymphoma/data/repositories/user_repository.dart' as _i7;
 import 'package:lymphoma/domain/interactors/appointments_interactor.dart'
-    as _i14;
-import 'package:lymphoma/domain/interactors/auth_interactor.dart' as _i19;
-import 'package:lymphoma/domain/interactors/doctors_interactor.dart' as _i12;
+    as _i13;
+import 'package:lymphoma/domain/interactors/auth_interactor.dart' as _i16;
+import 'package:lymphoma/domain/interactors/doctors_interactor.dart' as _i15;
 import 'package:lymphoma/domain/interactors/patients_interactor.dart' as _i9;
 import 'package:lymphoma/domain/models/patient/patient.dart' as _i11;
 import 'package:lymphoma/domain/utils/field_changer.dart' as _i8;
 import 'package:lymphoma/presentation/pages/confirm_request/cubit/confirm_request_cubit.dart'
     as _i10;
 import 'package:lymphoma/presentation/pages/history/cubit/history_cubit.dart'
-    as _i18;
+    as _i17;
 import 'package:lymphoma/presentation/pages/login/cubit/login_cubit.dart'
-    as _i22;
+    as _i18;
 import 'package:lymphoma/presentation/pages/main/doctor/cubit/main_doctor_page_cubit.dart'
     as _i21;
 import 'package:lymphoma/presentation/pages/main/patient/cubit/main_patient_page_cubit.dart'
-    as _i13;
+    as _i12;
 import 'package:lymphoma/presentation/pages/new_appointment/cubit/new_appointment_cubit.dart'
     as _i20;
 import 'package:lymphoma/presentation/pages/notifications/doctor/cubit/notifications_doctor_cubit.dart'
-    as _i16;
+    as _i22;
 import 'package:lymphoma/presentation/pages/profile/doctor/cubit/doctor_profile_page_cubit.dart'
-    as _i17;
-import 'package:lymphoma/presentation/pages/profile/patient/cubit/patient_profile_cubit.dart'
-    as _i15;
-import 'package:lymphoma/presentation/pages/registrations/cubit/registration_cubit.dart'
     as _i23;
+import 'package:lymphoma/presentation/pages/profile/patient/cubit/patient_profile_cubit.dart'
+    as _i14;
+import 'package:lymphoma/presentation/pages/registrations/cubit/registration_cubit.dart'
+    as _i19;
 
 extension GetItInjectableX on _i1.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -75,69 +75,70 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i9.PatientsInteractor>(),
           patient,
         )..loadPatient());
-    gh.factory<_i12.DoctorsInteractor>(() => _i12.DoctorsInteractor(
-          gh<_i5.DoctorsRepository>(),
-          gh<_i7.UserRepository>(),
-          gh<_i6.PatientsRepository>(),
-        ));
-    gh.factoryParam<_i13.MainPatientPageCubit, _i11.Patient?, dynamic>((
-      patient,
+    gh.factoryParam<_i12.MainPatientPageCubit, String?, dynamic>((
+      patientID,
       _,
     ) =>
-        _i13.MainPatientPageCubit(
+        _i12.MainPatientPageCubit(
           gh<_i9.PatientsInteractor>(),
-          patient,
-        )..loadPatientInfo());
-    gh.factory<_i14.AppointmentsInteractor>(() => _i14.AppointmentsInteractor(
+          patientID,
+        )..loadInfo());
+    gh.factory<_i13.AppointmentsInteractor>(() => _i13.AppointmentsInteractor(
           gh<_i3.AppointmentsRepository>(),
           gh<_i7.UserRepository>(),
         ));
-    gh.factoryParam<_i15.PatientProfileCubit, _i11.Patient?, dynamic>((
-      transmittedPatient,
+    gh.factoryParam<_i14.PatientProfileCubit, String?, dynamic>((
+      transmittedPatientID,
       _,
     ) =>
-        _i15.PatientProfileCubit(
+        _i14.PatientProfileCubit(
           gh<_i9.PatientsInteractor>(),
           gh<_i8.FieldChanger>(),
-          transmittedPatient,
+          transmittedPatientID,
         )..loadPatient());
-    gh.factory<_i16.NotificationsDoctorCubit>(() =>
-        _i16.NotificationsDoctorCubit(gh<_i12.DoctorsInteractor>())
-          ..loadPatients());
-    gh.factory<_i17.DoctorProfilePageCubit>(() =>
-        _i17.DoctorProfilePageCubit(gh<_i12.DoctorsInteractor>())
-          ..loadDoctorInfo());
-    gh.factoryParam<_i18.HistoryCubit, _i11.Patient, dynamic>((
-      patient,
-      _,
-    ) =>
-        _i18.HistoryCubit(
-          gh<_i14.AppointmentsInteractor>(),
-          patient,
-        )..loadAppointments());
-    gh.factory<_i19.AuthInteractor>(() => _i19.AuthInteractor(
+    gh.factory<_i15.DoctorsInteractor>(() => _i15.DoctorsInteractor(
+          gh<_i5.DoctorsRepository>(),
+          gh<_i7.UserRepository>(),
+          gh<_i6.PatientsRepository>(),
+          gh<_i3.AppointmentsRepository>(),
+        ));
+    gh.factory<_i16.AuthInteractor>(() => _i16.AuthInteractor(
           gh<_i4.AuthRepository>(),
           gh<_i6.PatientsRepository>(),
         ));
-    gh.factoryParam<_i20.NewAppointmentCubit, _i11.Patient, dynamic>((
-      patient,
+    gh.factoryParam<_i17.HistoryCubit, String?, dynamic>((
+      patientID,
+      _,
+    ) =>
+        _i17.HistoryCubit(
+          gh<_i13.AppointmentsInteractor>(),
+          patientID,
+        )..loadAppointments());
+    gh.factory<_i18.LoginCubit>(() => _i18.LoginCubit(
+          gh<_i16.AuthInteractor>(),
+          gh<_i8.FieldChanger>(),
+        ));
+    gh.factory<_i19.RegistrationCubit>(() => _i19.RegistrationCubit(
+          gh<_i16.AuthInteractor>(),
+          gh<_i8.FieldChanger>(),
+        ));
+    gh.factoryParam<_i20.NewAppointmentCubit, String?, dynamic>((
+      patientID,
       _,
     ) =>
         _i20.NewAppointmentCubit(
-          patient,
+          patientID,
           gh<_i8.FieldChanger>(),
-          gh<_i14.AppointmentsInteractor>(),
-        ));
+          gh<_i13.AppointmentsInteractor>(),
+        )..init());
     gh.factory<_i21.MainDoctorPageCubit>(() =>
-        _i21.MainDoctorPageCubit(gh<_i9.PatientsInteractor>())..loadPatients());
-    gh.factory<_i22.LoginCubit>(() => _i22.LoginCubit(
-          gh<_i19.AuthInteractor>(),
-          gh<_i8.FieldChanger>(),
-        ));
-    gh.factory<_i23.RegistrationCubit>(() => _i23.RegistrationCubit(
-          gh<_i19.AuthInteractor>(),
-          gh<_i8.FieldChanger>(),
-        ));
+        _i21.MainDoctorPageCubit(gh<_i15.DoctorsInteractor>())..loadState());
+    gh.factory<_i22.NotificationsDoctorCubit>(() =>
+        _i22.NotificationsDoctorCubit(gh<_i15.DoctorsInteractor>())
+          ..loadPatients());
+    gh.factory<_i23.DoctorProfilePageCubit>(() =>
+        _i23.DoctorProfilePageCubit(gh<_i15.DoctorsInteractor>())
+          ..loadDoctorInfo());
     return this;
   }
 }

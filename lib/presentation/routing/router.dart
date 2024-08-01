@@ -86,36 +86,87 @@ abstract class AppRouter {
         builder: (context, state) => const MainDoctorPage(),
         routes: [
           GoRoute(
+              path: Routes.doctorProfile.lastPathComponent,
+              builder: (context, state) => BlocProvider(
+                create: (context) => getIt.get<DoctorProfilePageCubit>(),
+                child: const DoctorProfilePage(),
+              )
+          ),
+          GoRoute(
+              path: Routes.doctorNotifications.lastPathComponent,
+              builder: (context, state) => BlocProvider(
+                create: (context) => getIt.get<NotificationsDoctorCubit>(),
+                child: const NotificationsDoctorPage(),
+              ),
+              routes: [
+                GoRoute(
+                    path: Routes.doctorNotificationsRequests.lastPathComponent,
+                    builder: (context, state) => BlocProvider.value(
+                      value: getIt.get<NotificationsDoctorCubit>(),
+                      child: const RequestsFromPatients(),
+                    ),
+                    routes: [
+                      GoRoute(
+                        path: Routes.doctorNotificationsRequest.lastPathComponent,
+                        builder: (context, state) => MultiBlocProvider(
+                          providers: [
+                            BlocProvider.value(
+                              value: getIt.get<NotificationsDoctorCubit>(),
+                            ),
+                            BlocProvider(
+                              create: (context) => getIt.get<ConfirmRequestCubit>(param1: state.extra as Patient),
+                            )
+                          ],
+                          child: const ConfirmRequestPage(),
+                        ),
+                        routes: [
+                          GoRoute(
+                              path: Routes.doctorNotificationsRequestStatus.lastPathComponent,
+                              builder: (context, state) => BlocProvider.value(
+                                value: getIt.get<NotificationsDoctorCubit>(),
+                                child: ConfirmStatus(
+                                    isOk: state.extra as bool
+                                ),
+                              )
+                          )
+                        ],
+                      )
+                    ]
+                )
+              ]
+          ),
+          GoRoute(
             path: Routes.patientInfo.lastPathComponent,
             builder: (context, state) {
-              final patient = state.extra as Patient;
+              final patientID = state.pathParameters[TableFieldNames.patientID];
               return BlocProvider(
-                create: (context) => getIt.get<MainPatientPageCubit>(param1: patient),
+                create: (context) => getIt.get<MainPatientPageCubit>(param1: patientID),
                 child: PatientInfoPage(
-                  patient: patient,
+                  patientID: patientID,
                 ),
               );
             },
             routes: [
               GoRoute(
                 path: Routes.patientHistory.lastPathComponent,
-                builder: (context, state) => HistoryPage(patient: state.extra as Patient)
+                builder: (context, state) => HistoryPage(patientID: state.pathParameters[TableFieldNames.patientID])
               ),
               GoRoute(
                 path: Routes.newAppointment.lastPathComponent,
                 builder: (context, state) {
-                  final patient = state.extra as Patient;
+                  final patientID = state.pathParameters[TableFieldNames.patientID];
                   return MultiBlocProvider(
                     providers: [
                       BlocProvider.value(
-                        value: getIt.get<MainPatientPageCubit>(param1: patient),
+                        value: getIt.get<MainPatientPageCubit>(param1: patientID),
                       ),
                       BlocProvider(
-                        create: (context) => getIt.get<NewAppointmentCubit>(param1: patient),
+                        create: (context) => getIt.get<NewAppointmentCubit>(param1: patientID),
                       )
                     ],
                     child: NewAppointmentPage(
-                      patient: patient,
+                      patientID: patientID,
+                      isTherapist: state.extra as bool
                     ),
                   );
                 },
@@ -123,9 +174,10 @@ abstract class AppRouter {
                   GoRoute(
                     path: Routes.newAppointmentStatus.lastPathComponent,
                     builder: (context, state) => BlocProvider.value(
-                      value: getIt.get<MainPatientPageCubit>(param1: state.extra as Patient),
+                      value: getIt.get<MainPatientPageCubit>(param1: state.pathParameters[TableFieldNames.patientID]),
                       child: NewAppointmentStatus(
-                        patient: state.extra as Patient,
+                        patientID: state.pathParameters[TableFieldNames.patientID],
+                        isDispensary: state.extra as bool
                       ),
                     )
                   )
@@ -134,61 +186,11 @@ abstract class AppRouter {
               GoRoute(
                   path: Routes.patientProfileByDoctor.lastPathComponent,
                   builder: (context, state) => PatientProfilePage(
-                    patient: state.extra as Patient?,
+                    patientID: state.pathParameters[TableFieldNames.patientID],
                   ),
               ),
             ]
           ),
-          GoRoute(
-            path: Routes.doctorProfile.lastPathComponent,
-            builder: (context, state) => BlocProvider(
-              create: (context) => getIt.get<DoctorProfilePageCubit>(),
-              child: const DoctorProfilePage(),
-            )
-          ),
-          GoRoute(
-            path: Routes.doctorNotifications.lastPathComponent,
-            builder: (context, state) => BlocProvider(
-              create: (context) => getIt.get<NotificationsDoctorCubit>(),
-              child: const NotificationsDoctorPage(),
-            ),
-            routes: [
-              GoRoute(
-                path: Routes.doctorNotificationsRequests.lastPathComponent,
-                builder: (context, state) => BlocProvider.value(
-                  value: getIt.get<NotificationsDoctorCubit>(),
-                  child: const RequestsFromPatients(),
-                ),
-                routes: [
-                  GoRoute(
-                    path: Routes.doctorNotificationsRequest.lastPathComponent,
-                    builder: (context, state) => MultiBlocProvider(
-                      providers: [
-                        BlocProvider.value(
-                          value: getIt.get<NotificationsDoctorCubit>(),
-                        ),
-                        BlocProvider(
-                          create: (context) => getIt.get<ConfirmRequestCubit>(param1: state.extra as Patient),
-                        )
-                      ],
-                      child: const ConfirmRequestPage(),
-                    ),
-                    routes: [
-                      GoRoute(
-                        path: Routes.doctorNotificationsRequestStatus.lastPathComponent,
-                        builder: (context, state) => BlocProvider.value(
-                          value: getIt.get<NotificationsDoctorCubit>(),
-                          child: ConfirmStatus(
-                            isOk: state.extra as bool
-                          ),
-                        )
-                      )
-                    ],
-                  )
-                ]
-              )
-            ]
-          )
         ]
       )
     ]

@@ -19,15 +19,15 @@ import 'cubit/history_state.dart';
 class HistoryPage extends StatelessWidget {
   const HistoryPage({
     super.key,
-    required this.patient
+    required this.patientID
   });
 
-  final Patient patient;
+  final String? patientID;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt.get<HistoryCubit>(param1: patient),
+      create: (context) => getIt.get<HistoryCubit>(param1: patientID),
       child: BlocBuilder<HistoryCubit, HistoryState>(
         builder: (context, state) {
           return Scaffold(
@@ -38,7 +38,7 @@ class HistoryPage extends StatelessWidget {
             body: Padding(
               padding: const EdgeInsets.only(top: 31),
               child: AppTabBarView(
-                tabNames: [
+                tabNames: const [
                   "Записи",
                   "Ход лечения"
                 ],

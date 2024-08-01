@@ -37,7 +37,7 @@ class PatientsRepository {
   }
 
   String _getSelect() {
-    return ''' *, jt_patients_doctors ( doctors ( * ) ) ''';
+    return ''' *, ${TableNames.jtPatientsDoctors} ( ${TableNames.doctors} ( * ) ) ''';
   }
 
   void updateVerified(VerificationStatus status, String id) async {

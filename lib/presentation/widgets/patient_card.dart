@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lymphoma/consts/strings.dart';
 import 'package:lymphoma/domain/utils/year_formatter.dart';
 import 'package:lymphoma/ext/context_ext.dart';
 
@@ -27,7 +28,7 @@ class PatientCard extends StatelessWidget {
         side: BorderSide(color: context.colors.primary)
       ) : null,
       child: InkWell(
-        onTap: () => context.go(Routes.patientInfo.path, extra: patient),
+        onTap: () => context.go(Routes.patientInfo.path({TableFieldNames.patientID: patient.id})),
         child: Padding(
           padding: const EdgeInsets.all(AppDimens.padding),
           child: Row(

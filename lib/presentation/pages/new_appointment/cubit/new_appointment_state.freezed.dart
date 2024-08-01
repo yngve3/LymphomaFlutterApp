@@ -16,7 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$NewAppointmentState {
-  List<Field> get dispAppointmentsFields => throw _privateConstructorUsedError;
+  List<DispAppointmentState> get dispAppointmentStates =>
+      throw _privateConstructorUsedError;
   List<Field> get appointmentsFields => throw _privateConstructorUsedError;
   bool get isDispAppointmentsSaveButtonEnabled =>
       throw _privateConstructorUsedError;
@@ -35,7 +36,7 @@ abstract class $NewAppointmentStateCopyWith<$Res> {
       _$NewAppointmentStateCopyWithImpl<$Res, NewAppointmentState>;
   @useResult
   $Res call(
-      {List<Field> dispAppointmentsFields,
+      {List<DispAppointmentState> dispAppointmentStates,
       List<Field> appointmentsFields,
       bool isDispAppointmentsSaveButtonEnabled,
       bool isAppointmentsSaveButtonEnabled});
@@ -54,16 +55,16 @@ class _$NewAppointmentStateCopyWithImpl<$Res, $Val extends NewAppointmentState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? dispAppointmentsFields = null,
+    Object? dispAppointmentStates = null,
     Object? appointmentsFields = null,
     Object? isDispAppointmentsSaveButtonEnabled = null,
     Object? isAppointmentsSaveButtonEnabled = null,
   }) {
     return _then(_value.copyWith(
-      dispAppointmentsFields: null == dispAppointmentsFields
-          ? _value.dispAppointmentsFields
-          : dispAppointmentsFields // ignore: cast_nullable_to_non_nullable
-              as List<Field>,
+      dispAppointmentStates: null == dispAppointmentStates
+          ? _value.dispAppointmentStates
+          : dispAppointmentStates // ignore: cast_nullable_to_non_nullable
+              as List<DispAppointmentState>,
       appointmentsFields: null == appointmentsFields
           ? _value.appointmentsFields
           : appointmentsFields // ignore: cast_nullable_to_non_nullable
@@ -90,7 +91,7 @@ abstract class _$$NewAppointmentStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<Field> dispAppointmentsFields,
+      {List<DispAppointmentState> dispAppointmentStates,
       List<Field> appointmentsFields,
       bool isDispAppointmentsSaveButtonEnabled,
       bool isAppointmentsSaveButtonEnabled});
@@ -107,16 +108,16 @@ class __$$NewAppointmentStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? dispAppointmentsFields = null,
+    Object? dispAppointmentStates = null,
     Object? appointmentsFields = null,
     Object? isDispAppointmentsSaveButtonEnabled = null,
     Object? isAppointmentsSaveButtonEnabled = null,
   }) {
     return _then(_$NewAppointmentStateImpl(
-      dispAppointmentsFields: null == dispAppointmentsFields
-          ? _value._dispAppointmentsFields
-          : dispAppointmentsFields // ignore: cast_nullable_to_non_nullable
-              as List<Field>,
+      dispAppointmentStates: null == dispAppointmentStates
+          ? _value._dispAppointmentStates
+          : dispAppointmentStates // ignore: cast_nullable_to_non_nullable
+              as List<DispAppointmentState>,
       appointmentsFields: null == appointmentsFields
           ? _value._appointmentsFields
           : appointmentsFields // ignore: cast_nullable_to_non_nullable
@@ -138,21 +139,21 @@ class __$$NewAppointmentStateImplCopyWithImpl<$Res>
 
 class _$NewAppointmentStateImpl implements _NewAppointmentState {
   const _$NewAppointmentStateImpl(
-      {final List<Field> dispAppointmentsFields = const [],
+      {final List<DispAppointmentState> dispAppointmentStates = const [],
       final List<Field> appointmentsFields = const [],
       this.isDispAppointmentsSaveButtonEnabled = false,
       this.isAppointmentsSaveButtonEnabled = false})
-      : _dispAppointmentsFields = dispAppointmentsFields,
+      : _dispAppointmentStates = dispAppointmentStates,
         _appointmentsFields = appointmentsFields;
 
-  final List<Field> _dispAppointmentsFields;
+  final List<DispAppointmentState> _dispAppointmentStates;
   @override
   @JsonKey()
-  List<Field> get dispAppointmentsFields {
-    if (_dispAppointmentsFields is EqualUnmodifiableListView)
-      return _dispAppointmentsFields;
+  List<DispAppointmentState> get dispAppointmentStates {
+    if (_dispAppointmentStates is EqualUnmodifiableListView)
+      return _dispAppointmentStates;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_dispAppointmentsFields);
+    return EqualUnmodifiableListView(_dispAppointmentStates);
   }
 
   final List<Field> _appointmentsFields;
@@ -174,7 +175,7 @@ class _$NewAppointmentStateImpl implements _NewAppointmentState {
 
   @override
   String toString() {
-    return 'NewAppointmentState(dispAppointmentsFields: $dispAppointmentsFields, appointmentsFields: $appointmentsFields, isDispAppointmentsSaveButtonEnabled: $isDispAppointmentsSaveButtonEnabled, isAppointmentsSaveButtonEnabled: $isAppointmentsSaveButtonEnabled)';
+    return 'NewAppointmentState(dispAppointmentStates: $dispAppointmentStates, appointmentsFields: $appointmentsFields, isDispAppointmentsSaveButtonEnabled: $isDispAppointmentsSaveButtonEnabled, isAppointmentsSaveButtonEnabled: $isAppointmentsSaveButtonEnabled)';
   }
 
   @override
@@ -182,8 +183,8 @@ class _$NewAppointmentStateImpl implements _NewAppointmentState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$NewAppointmentStateImpl &&
-            const DeepCollectionEquality().equals(
-                other._dispAppointmentsFields, _dispAppointmentsFields) &&
+            const DeepCollectionEquality()
+                .equals(other._dispAppointmentStates, _dispAppointmentStates) &&
             const DeepCollectionEquality()
                 .equals(other._appointmentsFields, _appointmentsFields) &&
             (identical(other.isDispAppointmentsSaveButtonEnabled,
@@ -199,7 +200,7 @@ class _$NewAppointmentStateImpl implements _NewAppointmentState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(_dispAppointmentsFields),
+      const DeepCollectionEquality().hash(_dispAppointmentStates),
       const DeepCollectionEquality().hash(_appointmentsFields),
       isDispAppointmentsSaveButtonEnabled,
       isAppointmentsSaveButtonEnabled);
@@ -214,13 +215,13 @@ class _$NewAppointmentStateImpl implements _NewAppointmentState {
 
 abstract class _NewAppointmentState implements NewAppointmentState {
   const factory _NewAppointmentState(
-      {final List<Field> dispAppointmentsFields,
+      {final List<DispAppointmentState> dispAppointmentStates,
       final List<Field> appointmentsFields,
       final bool isDispAppointmentsSaveButtonEnabled,
       final bool isAppointmentsSaveButtonEnabled}) = _$NewAppointmentStateImpl;
 
   @override
-  List<Field> get dispAppointmentsFields;
+  List<DispAppointmentState> get dispAppointmentStates;
   @override
   List<Field> get appointmentsFields;
   @override

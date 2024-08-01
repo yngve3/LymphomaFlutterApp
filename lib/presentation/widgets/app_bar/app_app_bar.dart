@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:lymphoma/consts/dimens.dart';
 import 'package:lymphoma/ext/context_ext.dart';
+import 'package:lymphoma/presentation/widgets/shimmer.dart';
+
+import '../../../domain/models/loading_state.dart';
 
 class AppAppBar extends StatelessWidget implements PreferredSizeWidget {
   AppAppBar({
     super.key,
     this.title = "",
     List<Widget>? actions,
-    this.leading
+    this.leading,
+    this.titleLoadingState = LoadingState.ok
   }) : actions = actions ?? [];
 
   final List<Widget> actions;
   final String title;
   final Widget? leading;
+  final LoadingState titleLoadingState;
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +32,19 @@ class AppAppBar extends StatelessWidget implements PreferredSizeWidget {
         backgroundColor: context.colors.background,
         centerTitle: true,
         titleSpacing: 0,
-        title: Text(
-          title,
-          style: Theme.of(context).textTheme.headlineMedium,
-        ),
+        title: switch(titleLoadingState) {
+          LoadingState.ok => Text(
+            title,
+            style: Theme.of(context).textTheme.headlineMedium,
+          ),
+          LoadingState.loading => AppShimmer(
+            child: Container(color: Colors.yellow, height: 30, width: 200),
+          ),
+          LoadingState.error => Text(
+            "Имя не определено",
+            style: Theme.of(context).textTheme.headlineMedium,
+          )
+        },
         leading: leading,
         actions: actions.map((action) =>
             Padding(

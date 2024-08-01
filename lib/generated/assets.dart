@@ -2,6 +2,7 @@
 class Assets {
   Assets._();
 
+  static const String iconsIcAdd = 'assets/icons/ic_add.svg';
   static const String iconsIcAddUser = 'assets/icons/ic_add_user.svg';
   static const String iconsIcArrowLeft = 'assets/icons/ic_arrow_left.svg';
   static const String iconsIcArrowRight = 'assets/icons/ic_arrow_right.svg';
@@ -14,11 +15,12 @@ class Assets {
   static const String iconsIcNotOk = 'assets/icons/ic_not_ok.svg';
   static const String iconsIcNotifications = 'assets/icons/ic_notifications.svg';
   static const String iconsIcOk = 'assets/icons/ic_ok.svg';
+  static const String iconsIcOncologist = 'assets/icons/ic_oncologist.svg';
   static const String iconsIcPerson = 'assets/icons/ic_person.svg';
   static const String iconsIcShow = 'assets/icons/ic_show.svg';
   static const String iconsIcStar = 'assets/icons/ic_star.svg';
   static const String iconsIcThreeDots = 'assets/icons/ic_three_dots.svg';
-  static const String iconsOncologist = 'assets/icons/ic_oncologist.svg';
+  static const String iconsLogout = 'assets/icons/ic_logout.svg';
   static const String imagesImgStartPage = 'assets/images/img_start_page.png';
   static const String imagesImgSvg = 'assets/images/img_svg.svg';
   static const String manropeManropeBold = 'assets/fonts/manrope/Manrope-Bold.ttf';

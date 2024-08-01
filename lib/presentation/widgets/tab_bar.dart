@@ -7,16 +7,19 @@ class AppTabBarView extends StatelessWidget {
   const AppTabBarView({
     super.key,
     required this.tabNames,
-    required this.tabScreens
+    required this.tabScreens,
+    this.initialIndex = 0
   });
 
   final List<String> tabNames;
   final List<Widget> tabScreens;
+  final int initialIndex;
 
   @override
   Widget build(BuildContext context) {
     assert(tabNames.length == tabScreens.length);
     return DefaultTabController(
+      initialIndex: initialIndex,
       length: tabNames.length,
       child: Column(
         children: [
